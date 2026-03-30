@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>数学建模实验一 | 工一阵·半盏</title><meta name="author" content="Gong-Yie"><meta name="copyright" content="Gong-Yie"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="必选课，不选学分修不满，无话可说。  实验内容1、将SoI.txt文件中的数据导入到变量S中.2、截取S中行数据中存在大于0.3的行，并将其存为变量Sub_S.3、求Sub_S中的最大值和最小值，统计Sub_S落在以0.05为间隔[min,max]之间的值的频数.4、将问题3)的频数进行可视化表达。  我的代码 1234567891011121314151617S&#x3D;load(&#x27;SoI.t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数学建模实验一">
+<meta property="og:url" content="https://gong-yie.github.io/posts/6bfff31/index.html">
+<meta property="og:site_name" content="工一阵·半盏">
+<meta property="og:description" content="必选课，不选学分修不满，无话可说。  实验内容1、将SoI.txt文件中的数据导入到变量S中.2、截取S中行数据中存在大于0.3的行，并将其存为变量Sub_S.3、求Sub_S中的最大值和最小值，统计Sub_S落在以0.05为间隔[min,max]之间的值的频数.4、将问题3)的频数进行可视化表达。  我的代码 1234567891011121314151617S&#x3D;load(&#x27;SoI.t">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gong-yie.github.io/img/avatar.jpg">
+<meta property="article:published_time" content="2026-03-19T02:30:52.000Z">
+<meta property="article:modified_time" content="2026-03-19T02:45:21.870Z">
+<meta property="article:author" content="Gong-Yie">
+<meta property="article:tag" content="数学建模">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gong-yie.github.io/img/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "数学建模实验一",
+  "url": "https://gong-yie.github.io/posts/6bfff31/",
+  "image": "https://gong-yie.github.io/img/avatar.jpg",
+  "datePublished": "2026-03-19T02:30:52.000Z",
+  "dateModified": "2026-03-19T02:45:21.870Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Gong-Yie",
+      "url": "https://Gong-Yie.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://gong-yie.github.io/posts/6bfff31/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":-1,"unescape":false,"pagination":{"enable":true,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '数学建模实验一',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/modify.css"><link rel="stylesheet" href="/css/mouse-effect.css"><link rel="stylesheet" href="/css/APlayer.min.css"><link rel="stylesheet" href="/css/global-player.css"><link rel="stylesheet" href="/css/typed-title.css"><meta name="generator" content="Hexo 8.1.1"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/img/banner.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">工一阵·半盏</span></a><a class="nav-page-title" href="/"><span class="site-name">数学建模实验一</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">数学建模实验一</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-19T02:30:52.000Z" title="发表于 2026-03-19 10:30:52">2026-03-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-19T02:45:21.870Z" title="更新于 2026-03-19 10:45:21">2026-03-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>23分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>必选课，不选学分修不满，无话可说。</p>
+<blockquote>
+<p>实验内容<br>1、将SoI.txt文件中的数据导入到变量S中.<br>2、截取S中行数据中存在大于0.3的行，并将其存为变量Sub_S.<br>3、求Sub_S中的最大值和最小值，统计Sub_S落在以0.05为间隔[min,max]之间的值的频数.<br>4、将问题3)的频数进行可视化表达。</p>
+</blockquote>
+<p>我的代码</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">S=load(<span class="string">&#x27;SoI.txt&#x27;</span>);<span class="comment">% 将文件中的数据读入矩阵S</span></span><br><span class="line">rows=any(S&gt;<span class="number">0.3</span>,<span class="number">2</span>);<span class="comment">% 按行检查，返回逻辑列向量</span></span><br><span class="line">new_S=S(rows,:);<span class="comment">% 提取满足条件的行，得到新矩阵</span></span><br><span class="line">max_val=<span class="built_in">max</span>(new_S(:));<span class="comment">% 全局最大值</span></span><br><span class="line">min_val=<span class="built_in">min</span>(new_S(:));<span class="comment">% 全局最小值</span></span><br><span class="line">edges=min_val:<span class="number">0.05</span>:max_val;<span class="comment">% 生成区间边界，步长0.05</span></span><br><span class="line">counts=histc(new_S(:),edges);<span class="comment">% 统计每个区间内的频数</span></span><br><span class="line"></span><br><span class="line">fprintf(<span class="string">&#x27;最大值: %g\n&#x27;</span>, max_val);</span><br><span class="line">fprintf(<span class="string">&#x27;最小值: %g\n&#x27;</span>, min_val);</span><br><span class="line">fprintf(<span class="string">&#x27;频数向量（长度 %d）:\n&#x27;</span>, <span class="built_in">length</span>(counts));</span><br><span class="line"><span class="built_in">disp</span>(counts);</span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span>;<span class="comment">% 创建新图形窗口</span></span><br><span class="line">bar(edges,counts,<span class="string">&#x27;histc&#x27;</span>);<span class="comment">% 绘制条形图（直方图模式）</span></span><br><span class="line">xlabel(<span class="string">&#x27;数值区间&#x27;</span>);<span class="comment">% x轴标签</span></span><br><span class="line">ylabel(<span class="string">&#x27;频数&#x27;</span>);<span class="comment">% y轴标签</span></span><br></pre></td></tr></table></figure>
+
+<p>下面是SoI.txt文件内容</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">4.0048544e-001  1.2621359e-001  1.7718447e-001  3.1553398e-002  1.8689320e-001  2.4271845e-002  0.0000000e+000  4.8543689e-003  1.4563107e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  1.9417476e-002  0.0000000e+000  0.0000000e+000  1.2135922e-002  2.4271845e-003  0.0000000e+000</span><br><span class="line">2.6436782e-001  5.5172414e-002  1.2413793e-001  6.6666667e-002  4.5977011e-002  1.8390805e-002  0.0000000e+000  2.0229885e-001  6.8965517e-003  0.0000000e+000  8.9655172e-002  3.9080460e-002  2.2988506e-003  0.0000000e+000  2.0689655e-002  5.2873563e-002  6.8965517e-003  4.5977011e-003</span><br><span class="line">3.7037037e-001  0.0000000e+000  1.1111111e-001  7.4074074e-002  1.4814815e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  7.4074074e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  1.8518519e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  3.7037037e-002  0.0000000e+000</span><br><span class="line">3.9826840e-001  2.4242424e-001  1.1255411e-001  3.4632035e-002  1.0822511e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  8.6580087e-003  0.0000000e+000  0.0000000e+000  0.0000000e+000  1.2987013e-002  0.0000000e+000  6.0606061e-002  2.1645022e-002  0.0000000e+000  0.0000000e+000</span><br><span class="line">1.8429487e-001  1.1698718e-001  4.8076923e-002  2.2435897e-002  6.0897436e-002  4.6474359e-002  0.0000000e+000  8.9743590e-002  6.4102564e-003  0.0000000e+000  0.0000000e+000  5.1282051e-002  4.8076923e-003  0.0000000e+000  3.4935897e-001  1.7628205e-002  1.6025641e-003  0.0000000e+000</span><br><span class="line">2.7472527e-001  6.1813187e-002  1.4423077e-001  8.9285714e-002  6.7307692e-002  1.6483516e-002  2.7472527e-003  1.6483516e-002  3.9835165e-002  0.0000000e+000  4.6703297e-002  2.7472527e-003  4.9450549e-002  2.7472527e-003  1.0439560e-001  6.8681319e-003  7.2802198e-002  1.3736264e-003</span><br><span class="line">1.9599837e-001  1.1637403e-001  7.5132707e-002  8.8199265e-002  4.9407922e-002  2.9808085e-002  2.1233156e-002  5.9207840e-002  1.7149857e-002  0.0000000e+000  6.5332789e-002  6.9416088e-003  2.6949775e-002  1.3597387e-001  1.2249898e-003  1.7966517e-002  7.7582687e-002  1.5516537e-002</span><br><span class="line">8.4644195e-002  8.3895131e-002  4.1947566e-002  1.1985019e-002  3.4456929e-002  2.9962547e-003  4.5393258e-001  9.7378277e-003  3.7453184e-003  0.0000000e+000  0.0000000e+000  2.9962547e-003  3.7453184e-003  0.0000000e+000  0.0000000e+000  1.5730337e-002  0.0000000e+000  2.5018727e-001</span><br><span class="line">4.7058824e-001  1.7647059e-001  1.7647059e-001  0.0000000e+000  1.7647059e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000</span><br><span class="line">2.5806452e-001  1.6129032e-001  1.9354839e-001  5.3763441e-002  2.1505376e-002  1.0752688e-002  0.0000000e+000  0.0000000e+000  3.2258065e-002  0.0000000e+000  0.0000000e+000  1.0752688e-002  0.0000000e+000  0.0000000e+000  7.5268817e-002  1.5053763e-001  3.2258065e-002  0.0000000e+000</span><br><span class="line">1.6606498e-001  1.2274368e-001  1.0830325e-001  2.5270758e-002  1.2996390e-001  1.2635379e-001  0.0000000e+000  0.0000000e+000  3.6101083e-003  0.0000000e+000  0.0000000e+000  2.6353791e-001  7.2202166e-003  0.0000000e+000  3.6101083e-003  3.9711191e-002  3.6101083e-003  0.0000000e+000</span><br><span class="line">2.5380711e-001  1.0152284e-001  1.0152284e-001  1.0659898e-001  1.0659898e-001  4.5685279e-002  0.0000000e+000  1.0659898e-001  5.0761421e-003  0.0000000e+000  0.0000000e+000  1.5228426e-002  3.0456853e-002  5.0761421e-003  0.0000000e+000  2.0304569e-002  9.6446701e-002  5.0761421e-003</span><br><span class="line">3.8607595e-001  1.7405063e-001  1.0759494e-001  1.8354430e-001  8.2278481e-002  0.0000000e+000  0.0000000e+000  2.5316456e-002  1.8987342e-002  0.0000000e+000  0.0000000e+000  3.1645570e-003  9.4936709e-003  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  9.4936709e-003</span><br><span class="line">1.7828201e-001  1.1507293e-001  8.5899514e-002  5.3484603e-002  5.9967585e-002  7.1312804e-002  1.6207455e-002  2.4311183e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  3.0632091e-001  1.7828201e-002  0.0000000e+000  1.6207455e-003  5.0243112e-002  9.7244733e-003  9.7244733e-003</span><br><span class="line">5.3488372e-001  8.1395349e-002  1.6279070e-001  3.4883721e-002  9.3023256e-002  0.0000000e+000  0.0000000e+000  2.3255814e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  6.9767442e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000</span><br><span class="line">3.9344262e-001  1.1475410e-001  2.4590164e-001  0.0000000e+000  1.1475410e-001  0.0000000e+000  3.2786885e-002  4.9180328e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  1.6393443e-002  0.0000000e+000  1.6393443e-002  0.0000000e+000  0.0000000e+000  1.6393443e-002</span><br><span class="line">3.1313131e-001  2.4242424e-001  1.6161616e-001  3.0303030e-002  1.2121212e-001  0.0000000e+000  4.0404040e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  3.0303030e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  5.0505051e-002  1.0101010e-002</span><br><span class="line">2.3391813e-001  2.1052632e-001  1.1111111e-001  4.6783626e-002  5.2631579e-002  5.2631579e-002  0.0000000e+000  1.7543860e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  2.2807018e-001  5.8479532e-003  0.0000000e+000  0.0000000e+000  1.7543860e-002  1.7543860e-002  5.8479532e-003</span><br><span class="line">3.1288344e-001  3.0674847e-001  9.8159509e-002  4.2944785e-002  1.1042945e-001  3.6809816e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  3.6809816e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  5.5214724e-002  0.0000000e+000</span><br><span class="line">2.7555556e-001  5.9259259e-003  1.0518519e-001  8.2962963e-002  1.0962963e-001  1.4814815e-002  2.3703704e-002  5.0370370e-002  1.3333333e-002  0.0000000e+000  9.9259259e-002  0.0000000e+000  1.9851852e-001  1.4814815e-003  0.0000000e+000  5.9259259e-003  1.3333333e-002  0.0000000e+000</span><br><span class="line">3.6904762e-001  2.2619048e-001  1.4285714e-001  0.0000000e+000  5.9523810e-002  1.1904762e-002  0.0000000e+000  1.1904762e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  1.1904762e-002  0.0000000e+000  1.5476190e-001  1.1904762e-002  0.0000000e+000  0.0000000e+000</span><br><span class="line">3.5922330e-001  9.7087379e-002  1.6504854e-001  1.2621359e-001  6.7961165e-002  9.7087379e-003  0.0000000e+000  1.9417476e-002  4.8543689e-002  0.0000000e+000  0.0000000e+000  3.8834951e-002  1.9417476e-002  0.0000000e+000  3.8834951e-002  0.0000000e+000  0.0000000e+000  9.7087379e-003</span><br><span class="line">2.1371327e-002  5.7880677e-002  9.7951915e-003  1.1308994e-001  4.0071238e-002  2.5734639e-001  8.0142476e-003  2.4042743e-002  5.3428317e-002  1.1932324e-001  8.8156723e-002  1.0685663e-002  3.2056990e-002  2.6714159e-002  5.3428317e-003  7.1237756e-002  4.9866429e-002  1.1576135e-002</span><br><span class="line">3.6363636e-001  0.0000000e+000  9.0909091e-002  0.0000000e+000  2.7272727e-001  0.0000000e+000  2.7272727e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000</span><br><span class="line">2.3938224e-001  2.8185328e-001  5.4054054e-002  3.0888031e-002  8.8803089e-002  4.6332046e-002  0.0000000e+000  4.6332046e-002  3.8610039e-003  0.0000000e+000  0.0000000e+000  1.3513514e-001  1.5444015e-002  0.0000000e+000  2.3166023e-002  3.0888031e-002  3.8610039e-003  0.0000000e+000</span><br><span class="line">2.5000000e-001  3.0000000e-001  1.4000000e-001  0.0000000e+000  7.0000000e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  2.3000000e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  1.0000000e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000</span><br><span class="line">2.7835052e-001  1.8556701e-001  9.2783505e-002  1.0824742e-001  8.2474227e-002  3.0927835e-002  0.0000000e+000  1.0309278e-001  1.5463918e-002  0.0000000e+000  0.0000000e+000  1.5463918e-002  4.1237113e-002  0.0000000e+000  5.1546392e-003  1.0309278e-002  3.0927835e-002  0.0000000e+000</span><br><span class="line">3.8842975e-001  8.2644628e-002  1.5702479e-001  1.1570248e-001  1.5702479e-001  8.2644628e-003  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  5.7851240e-002  0.0000000e+000  0.0000000e+000  3.3057851e-002  0.0000000e+000  0.0000000e+000</span><br><span class="line">5.1724138e-002  5.1724138e-002  3.4482759e-002  1.3793103e-001  1.7241379e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  7.0689655e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000</span><br><span class="line">1.7821782e-001  3.5643564e-001  1.8811881e-001  0.0000000e+000  1.6831683e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  1.0891089e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000</span><br><span class="line">3.5294118e-001  2.0168067e-001  1.5966387e-001  1.0924370e-001  1.0924370e-001  0.0000000e+000  0.0000000e+000  4.2016807e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  2.5210084e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000</span><br><span class="line">3.0344828e-001  3.0344828e-001  1.2413793e-001  3.4482759e-002  9.6551724e-002  3.4482759e-002  0.0000000e+000  2.7586207e-002  2.7586207e-002  0.0000000e+000  0.0000000e+000  1.3793103e-002  1.3793103e-002  0.0000000e+000  6.8965517e-003  6.8965517e-003  6.8965517e-003  0.0000000e+000</span><br><span class="line">3.7931034e-001  6.8965517e-002  1.2068966e-001  1.0344828e-001  8.6206897e-002  1.7241379e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  5.1724138e-002  1.7241379e-002  0.0000000e+000  0.0000000e+000  1.5517241e-001  0.0000000e+000</span><br><span class="line">0.0000000e+000  2.5000000e-001  0.0000000e+000  6.6666667e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  8.3333333e-002  0.0000000e+000</span><br><span class="line">1.6949153e-002  3.2203390e-001  0.0000000e+000  5.4237288e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  5.0847458e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  6.7796610e-002</span><br><span class="line">1.9047619e-001  4.7619048e-001  1.4285714e-001  0.0000000e+000  9.5238095e-002  0.0000000e+000  0.0000000e+000  4.7619048e-002  2.3809524e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  2.3809524e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000</span><br><span class="line">2.2155689e-001  1.4970060e-001  1.0778443e-001  1.0778443e-001  7.7844311e-002  4.7904192e-002  1.1976048e-002  1.7964072e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  1.1976048e-001  2.9940120e-002  0.0000000e+000  0.0000000e+000  5.3892216e-002  4.1916168e-002  1.1976048e-002</span><br><span class="line">2.5015404e-001  4.3130006e-002  1.0227973e-001  1.1275416e-001  7.5785582e-002  6.3462723e-002  8.0098583e-003  2.4029575e-002  9.5502157e-002  3.0807147e-003  2.4029575e-002  2.5878004e-002  3.8817006e-002  2.4645718e-003  6.5927295e-002  3.1423290e-002  2.5878004e-002  7.3937153e-003</span><br><span class="line">2.8735632e-001  1.7241379e-001  1.2643678e-001  2.2988506e-002  8.0459770e-002  0.0000000e+000  1.1494253e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  1.1494253e-002  1.1494253e-002  0.0000000e+000  2.4137931e-001  3.4482759e-002  0.0000000e+000  0.0000000e+000</span><br><span class="line">3.3858268e-001  2.5196850e-001  1.4960630e-001  6.2992126e-002  8.6614173e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  3.1496063e-002  0.0000000e+000  0.0000000e+000  7.8740157e-003  2.3622047e-002  0.0000000e+000  7.8740157e-003  3.9370079e-002  0.0000000e+000  0.0000000e+000</span><br><span class="line">9.6774194e-002  1.4662757e-001  5.5718475e-002  5.2785924e-002  4.9853372e-002  3.8123167e-002  4.3108504e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  5.5718475e-002  1.1730205e-002  0.0000000e+000  0.0000000e+000  2.3460411e-002  8.7976540e-003  2.9325513e-002</span><br><span class="line">8.0822924e-002  8.5966201e-002  3.1594416e-002  8.5966201e-002  4.1146216e-002  7.0536370e-002  6.7597355e-002  3.6737693e-002  8.3761940e-002  2.2042616e-003  7.4944893e-002  1.5429831e-002  1.6164585e-002  1.8809699e-001  2.2042616e-003  5.0698016e-002  4.7024247e-002  1.9103600e-002</span><br><span class="line">3.0681818e-001  2.5000000e-001  6.8181818e-002  9.0909091e-002  1.1742424e-001  1.8939394e-002  0.0000000e+000  3.0303030e-002  2.6515152e-002  0.0000000e+000  0.0000000e+000  7.5757576e-003  5.6818182e-002  0.0000000e+000  0.0000000e+000  1.5151515e-002  1.1363636e-002  0.0000000e+000</span><br><span class="line">5.8333333e-001  0.0000000e+000  1.6666667e-001  8.3333333e-002  8.3333333e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  8.3333333e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000</span><br><span class="line">3.5643564e-001  1.9306931e-001  2.3762376e-001  2.4752475e-002  1.4851485e-001  4.9504950e-003  0.0000000e+000  0.0000000e+000  9.9009901e-003  0.0000000e+000  0.0000000e+000  0.0000000e+000  1.4851485e-002  0.0000000e+000  0.0000000e+000  9.9009901e-003  0.0000000e+000  0.0000000e+000</span><br><span class="line">1.7725258e-002  7.3855244e-003  1.3293944e-002  6.2038405e-002  4.1358936e-002  2.7326440e-001  3.1757755e-002  1.4771049e-002  3.1019202e-002  3.5155096e-001  4.1358936e-002  0.0000000e+000  3.3973412e-002  0.0000000e+000  7.3855244e-003  5.3175775e-002  1.2555391e-002  7.3855244e-003</span><br><span class="line">3.1182796e-001  3.7634409e-001  1.0752688e-001  0.0000000e+000  9.6774194e-002  1.0752688e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  1.0752688e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  8.6021505e-002  0.0000000e+000</span><br><span class="line">3.9814815e-001  1.2037037e-001  1.2037037e-001  3.7037037e-002  1.0185185e-001  9.2592593e-003  0.0000000e+000  1.5740741e-001  0.0000000e+000  0.0000000e+000  2.7777778e-002  0.0000000e+000  2.7777778e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000</span><br><span class="line">3.8961039e-001  7.7922078e-002  1.8181818e-001  6.4935065e-002  7.7922078e-002  2.5974026e-002  0.0000000e+000  7.7922078e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  1.2987013e-002  1.2987013e-002  0.0000000e+000  1.2987013e-002  6.4935065e-002  0.0000000e+000</span><br><span class="line">4.8611111e-002  6.2500000e-002  3.7037037e-002  1.3078704e-001  3.7037037e-002  1.7824074e-001  2.0254630e-001  1.5046296e-002  7.0601852e-002  5.2083333e-002  5.3240741e-002  0.0000000e+000  1.3888889e-002  1.1574074e-003  3.4722222e-003  2.5462963e-002  2.6620370e-002  4.1666667e-002</span><br><span class="line">4.2105263e-001  1.1842105e-001  1.4473684e-001  3.9473684e-002  9.2105263e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  1.3157895e-002  2.6315789e-002  3.9473684e-002  3.9473684e-002  3.9473684e-002  2.6315789e-002  0.0000000e+000</span><br><span class="line">2.3664122e-001  7.6335878e-003  9.9236641e-002  1.5267176e-002  3.8167939e-002  7.6335878e-003  7.6335878e-003  6.1068702e-002  2.2900763e-002  0.0000000e+000  0.0000000e+000  3.8167939e-002  6.1068702e-002  0.0000000e+000  3.9694656e-001  7.6335878e-003  0.0000000e+000  0.0000000e+000</span><br><span class="line">3.3333333e-001  2.2875817e-001  1.2418301e-001  4.5751634e-002  7.8431373e-002  3.9215686e-002  0.0000000e+000  0.0000000e+000  4.5751634e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  9.1503268e-002  0.0000000e+000  0.0000000e+000  1.3071895e-002  0.0000000e+000  0.0000000e+000</span><br><span class="line">3.7600000e-001  5.6000000e-002  1.6000000e-001  1.6000000e-002  6.4000000e-002  1.6000000e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  8.0000000e-003  2.5600000e-001  8.0000000e-003  8.0000000e-003  3.2000000e-002  0.0000000e+000  0.0000000e+000</span><br><span class="line">1.5413534e-001  8.2706767e-002  5.6390977e-002  1.0902256e-001  6.0150376e-002  4.8872180e-002  2.2556391e-002  4.8872180e-002  1.1278195e-002  0.0000000e+000  0.0000000e+000  2.9699248e-001  1.5037594e-002  0.0000000e+000  1.1278195e-002  4.8872180e-002  3.3834586e-002  0.0000000e+000</span><br><span class="line">5.0000000e-001  0.0000000e+000  5.0000000e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000</span><br><span class="line">3.6250000e-001  1.8750000e-001  2.0000000e-001  0.0000000e+000  1.6250000e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  2.5000000e-002  0.0000000e+000  0.0000000e+000  1.2500000e-002  1.2500000e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  1.2500000e-002  2.5000000e-002</span><br><span class="line">4.9664430e-001  6.7114094e-002  1.0738255e-001  4.0268456e-002  1.2751678e-001  0.0000000e+000  0.0000000e+000  7.3825503e-002  4.6979866e-002  0.0000000e+000  0.0000000e+000  6.7114094e-003  2.6845638e-002  0.0000000e+000  0.0000000e+000  6.7114094e-003  0.0000000e+000  0.0000000e+000</span><br><span class="line">3.6585366e-001  1.0975610e-001  2.0731707e-001  4.8780488e-002  9.7560976e-002  2.4390244e-002  0.0000000e+000  2.4390244e-002  2.4390244e-002  0.0000000e+000  0.0000000e+000  1.2195122e-002  6.0975610e-002  0.0000000e+000  1.2195122e-002  0.0000000e+000  1.2195122e-002  0.0000000e+000</span><br><span class="line">3.2894737e-001  3.0263158e-001  2.6315789e-002  1.3157895e-001  1.9736842e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  1.3157895e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000</span><br><span class="line">3.6904762e-001  1.3095238e-001  1.7857143e-001  5.9523810e-002  7.1428571e-002  7.1428571e-002  0.0000000e+000  1.1904762e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  2.3809524e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  2.3809524e-002  2.3809524e-002  3.5714286e-002</span><br><span class="line">2.9687500e-001  9.3750000e-002  6.2500000e-002  3.5937500e-001  1.3281250e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  5.4687500e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000</span><br><span class="line">4.0000000e-001  1.1250000e-001  1.8750000e-001  1.2500000e-002  7.5000000e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000  3.7500000e-002  0.0000000e+000  0.0000000e+000  6.2500000e-002  1.2500000e-002  0.0000000e+000  0.0000000e+000  1.2500000e-002  8.7500000e-002  0.0000000e+000</span><br><span class="line">3.9743590e-001  1.1538462e-001  1.5384615e-001  6.4102564e-002  1.0256410e-001  0.0000000e+000  0.0000000e+000  1.0256410e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  2.5641026e-002  0.0000000e+000  3.8461538e-002  0.0000000e+000  0.0000000e+000  0.0000000e+000</span><br><span class="line">2.9411765e-001  1.1764706e-001  1.1764706e-001  3.3613445e-002  2.5210084e-002  1.0084034e-001  0.0000000e+000  1.1764706e-001  5.8823529e-002  0.0000000e+000  0.0000000e+000  4.2016807e-002  3.3613445e-002  0.0000000e+000  0.0000000e+000  4.2016807e-002  1.6806723e-002  0.0000000e+000</span><br><span class="line">2.9279279e-001  2.3423423e-001  2.1621622e-001  4.5045045e-003  2.0720721e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  2.7027027e-002  0.0000000e+000  0.0000000e+000  1.8018018e-002  0.0000000e+000  0.0000000e+000</span><br><span class="line">2.6470588e-001  1.9607843e-001  1.4705882e-001  9.8039216e-003  1.1764706e-001  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  0.0000000e+000  3.9215686e-002  0.0000000e+000  2.1568627e-001  9.8039216e-003  0.0000000e+000  0.0000000e+000</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://Gong-Yie.github.io">Gong-Yie</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://gong-yie.github.io/posts/6bfff31/">https://gong-yie.github.io/posts/6bfff31/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://Gong-Yie.github.io" target="_blank">工一阵·半盏</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></div><div class="post-share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/posts/fee90552/" title="算法设计与分析2"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">算法设计与分析2</div></div><div class="info-2"><div class="info-item-1">好算法的标准一个优质的算法需满足五大核心特性，是衡量算法设计优劣的基本准则：  正确性：能满足具体问题的需求，对合法输入输出正确结果，对非法输入能做出适配处理。  健壮性：具备对非法输入的抵抗能力，不会因错误输入产生错误动作或陷入瘫痪。  可读性：算法易于理解和实现，便于后续的调试、修改与维护。  时间效率高：算法运行的时间尽可能短，核心关注算法的执行速度。  空间效率高：算法运行过程中占用的计算机存储空间尽量少。   算法分析的基本概念算法分析的定义与目的 算法设计：面对具体问题，设计出能够解决问题的有效算法。  算法分析：对已设计完成的算法，从多维度评价和判断其优劣，其结果可指导改进算法设计，也能检验评估算法的有效性。  核心分析维度：效率（速度）是算法的核心和灵魂，同时兼顾正确性、健壮性、易读性、可扩展性等。   影响程序运行时间的因素算法最终运行的时间并非单一因素决定，而是由多方面共同影响：  计算机系统性能：不同硬件的运算速度、存储能力存在差异（如天河三号百亿亿次 &#x2F; 秒与个人电脑十亿次 &#x2F; 秒的运算差距）。  程序所依赖的算法：算法的设计思路和执行...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Gong-Yie</div><div class="author-info-description">工一阵的博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Gong-Yie"><i class="fab fa-github"></i><span>关注我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/6bfff31/" title="数学建模实验一">数学建模实验一</a><time datetime="2026-03-19T02:30:52.000Z" title="发表于 2026-03-19 10:30:52">2026-03-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/fee90552/" title="算法设计与分析2">算法设计与分析2</a><time datetime="2026-03-16T06:27:55.000Z" title="发表于 2026-03-16 14:27:55">2026-03-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/67d1212e/" title="操作系统第一章学习(无图精简版)">操作系统第一章学习(无图精简版)</a><time datetime="2026-03-12T05:50:20.000Z" title="发表于 2026-03-12 13:50:20">2026-03-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/57acf897/" title="算法设计与分析第一章学习">算法设计与分析第一章学习</a><time datetime="2026-03-02T04:55:16.000Z" title="发表于 2026-03-02 12:55:16">2026-03-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/315c14a9/" title="LangChain学习记录260204-高级概念">LangChain学习记录260204-高级概念</a><time datetime="2026-02-04T07:15:54.000Z" title="发表于 2026-02-04 15:15:54">2026-02-04</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Gong-Yie</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'Gong-Yie/Giscus',
+      'data-repo-id': 'R_kgDORQLVpg',
+      'data-category-id': 'DIC_kwDORQLVps4C2awj',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><script src="/js/mouse-effect.js"></script><script src="/js/APlayer.min.js"></script><script src="/js/global-player.js"></script><script src="/js/add-music-icon.js"></script><script src="/js/typed-title.js"></script><script src="/js/switch-bg.js"></script><script src="/js/random-bg.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js" defer="defer"></script><script>document.addEventListener('DOMContentLoaded', () => {
+  const pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:description\"]","link[rel=\"canonical\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/music/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => {
+      try {
+        fn()
+      } catch (err) {
+        console.debug('Pjax callback failed:', err)
+      }
+    })
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      false
+        ? pjax.loadUrl('/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.3"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
