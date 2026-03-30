@@ -1,0 +1,123 @@
+/* --- 悬浮面板基础样式 --- */
+#global-player-panel {
+  position: fixed;
+  left: 20px;
+  top: 100px;
+  width: 320px;
+  background: rgba(255, 255, 255, 0.85); /* 稍微增加一点透明度让毛玻璃更明显 */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  padding: 16px;
+  display: none;
+  font-family: system-ui, -apple-system, sans-serif;
+  transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), padding 0.3s ease;
+  overflow: hidden; /* 防止缩小时内容溢出 */
+}
+
+/* --- 深色模式适配 --- */
+[data-theme="dark"] #global-player-panel {
+  background: rgba(30, 30, 30, 0.85);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #eee;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* --- 顶部按钮栏 --- */
+.panel-header {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-bottom: 12px;
+  transition: margin 0.3s ease;
+}
+
+.panel-header button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--font-color); /* 使用主题变量 */
+  padding: 6px;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.panel-header button:hover {
+  background: rgba(128, 128, 128, 0.15);
+  color: var(--theme-color); /* 悬浮时变成主题色 */
+}
+
+[data-theme="dark"] .panel-header button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* --- 提示文字区域 --- */
+.panel-message {
+  margin: 4px 0 16px 0;
+  text-align: center;
+}
+
+.welcome-message {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: var(--text-highlight-color);
+}
+
+.hint-message {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* --- 下一首信息 --- */
+.next-info {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(128, 128, 128, 0.3);
+  font-size: 0.85em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- 最小化状态 (.minimized) --- */
+#global-player-panel.minimized {
+  width: 60px;
+  padding: 16px 8px; /* 调整内边距让按钮居中 */
+}
+
+#global-player-panel.minimized .panel-header {
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+#global-player-panel.minimized #panel-close,
+#global-player-panel.minimized .panel-content {
+  display: none; /* 最小化时隐藏内容和关闭按钮 */
+}
+
+/* --- APlayer 深色模式强行覆写 (让它融入你的毛玻璃) --- */
+[data-theme="dark"] #global-player-panel .aplayer {
+  background: transparent !important;
+}
+[data-theme="dark"] #global-player-panel .aplayer .aplayer-list ol li {
+  border-top-color: rgba(255, 255, 255, 0.1) !important;
+}
+[data-theme="dark"] #global-player-panel .aplayer .aplayer-list ol li:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+[data-theme="dark"] #global-player-panel .aplayer .aplayer-info .aplayer-music .aplayer-title {
+  color: #fff !important;
+}
+[data-theme="dark"] #global-player-panel .aplayer .aplayer-info .aplayer-controller .aplayer-time {
+  color: #ccc !important;
+}

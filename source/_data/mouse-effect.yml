@@ -1,0 +1,8 @@
+# 鼠标特效配置
+enable: true
+ripple_color: '#409EFF'  # 水波纹颜色
+enable_multi_color: false # 多色效果
+enable_trail: true        # 鼠标轨迹
+trail_color: '#409EFF'    # 轨迹颜色
+trail_size: 12            # 轨迹大小
+disable_on_mobile: true   # 移动端禁用

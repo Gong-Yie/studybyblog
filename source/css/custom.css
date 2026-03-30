@@ -1,0 +1,268 @@
+/* 绝对定位方案 */
+.post-content,
+.article-container,
+.post-container {
+  position: relative; /* 确保父元素有相对定位 */
+}
+
+#post-info,
+.post-info {
+  position: absolute;
+  bottom: 100px; /* 调整这个值，30px 或 100px 等 */
+  left: 0;
+  right: 0;
+  padding: 0 8%;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+/* 确保文章标题不重叠 */
+.post-title {
+  margin-bottom: 120px; /* 为下面的文章信息留出空间 */
+}
+
+/* 全局字体设置：中文用幼圆，英文用Consolas */
+
+/* 定义字体栈 */
+:root {
+  /* 如果幼圆不可用，使用圆体或微软雅黑 */
+  --chinese-font: 
+    "YouYuan", /* 幼圆 */
+    "Yuanti SC", /* 圆体-简 */
+    "Microsoft YaHei", /* 微软雅黑 */
+    "PingFang SC", /* 苹方 */
+    "Hiragino Sans GB", /* 冬青黑体 */
+    "WenQuanYi Micro Hei", /* 文泉驿微米黑 */
+    sans-serif;
+  
+  --english-font: 
+    "Consolas",
+    "Monaco",
+    "Lucida Console",
+    "DejaVu Sans Mono",
+    "Bitstream Vera Sans Mono",
+    "Courier New",
+    monospace;
+  
+  --light-blue: #87CEFA;
+  --light-blue-hover: #B0E0E6;
+}
+
+/* 全局字体 */
+body {
+  font-family: var(--chinese-font);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 英文字体应用 */
+[lang="en"],
+code,
+pre,
+kbd,
+samp,
+.code,
+pre code,
+.highlight,
+.article-content code:not([class*="language-"]),
+.post-content code:not([class*="language-"]) {
+  font-family: var(--english-font) !important;
+}
+
+/* 代码块 */
+pre[class*="language-"],
+code[class*="language-"],
+.highlight {
+  font-family: var(--english-font) !important;
+}
+
+/* 标题字体 - 设置为淡蓝色 */
+h1, h2, h3, h4, h5, h6,
+.post-title,
+.article-title,
+.page-title,
+.post-title a,
+.article-title a {
+  font-family: var(--chinese-font);
+  color: var(--light-blue) !important;
+  font-weight: 600;
+}
+
+/* 导航栏字体 - 设置为淡蓝色 */
+.navbar,
+.navbar-menu,
+.menu-list,
+.navbar .menu-list a,
+.navbar .menu-list a i,
+.site-brand-container,
+.site-name {
+  font-family: var(--chinese-font);
+  color: var(--light-blue) !important;
+}
+
+/* 导航栏悬停效果 */
+.navbar .menu-list a:hover,
+.navbar .menu-list a:focus {
+  color: var(--light-blue-hover) !important;
+  border-bottom-color: var(--light-blue-hover) !important;
+}
+
+/* 页脚字体 - 设置为淡蓝色 */
+footer,
+#footer,
+.footer,
+.site-footer,
+.footer-inner,
+.footer-text,
+.footer-copyright,
+.footer-powered-by,
+.footer-beian {
+  font-family: var(--chinese-font);
+  color: var(--light-blue) !important;
+}
+
+/* 页脚链接 */
+footer a,
+#footer a,
+.footer a {
+  color: var(--light-blue) !important;
+}
+
+footer a:hover,
+#footer a:hover,
+.footer a:hover {
+  color: var(--light-blue-hover) !important;
+}
+
+/* 侧边栏标题 */
+.card-widget .card-title,
+.aside-title {
+  font-family: var(--chinese-font);
+  color: var(--light-blue) !important;
+}
+
+/* 按钮文字 */
+button,
+.button,
+.btn {
+  font-family: var(--chinese-font);
+}
+
+/* 文章元数据（发布日期等） */
+.post-meta,
+.article-meta {
+  font-family: var(--chinese-font);
+  color: var(--light-blue) !important;
+}
+
+.post-meta a,
+.article-meta a {
+  color: var(--light-blue) !important;
+}
+
+.post-meta a:hover,
+.article-meta a:hover {
+  color: var(--light-blue-hover) !important;
+}
+
+/* 分类和标签 */
+.tags,
+.categories,
+.tag-list,
+.category-list {
+  font-family: var(--chinese-font);
+}
+
+.tags a,
+.categories a,
+.tag-list a,
+.category-list a {
+  font-family: var(--chinese-font);
+}
+
+/* 页面内容 */
+.page-content,
+.post-content,
+.article-content {
+  font-family: var(--chinese-font);
+  line-height: 1.8;
+}
+
+/* 确保中文内容使用幼圆，英文内容使用Consolas */
+.post-content p,
+.article-content p,
+.page-content p {
+  font-family: var(--chinese-font);
+}
+
+.post-content strong,
+.article-content strong {
+  font-family: var(--chinese-font);
+  font-weight: 600;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+  
+  .navbar .menu-list a {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 1.8em;
+  }
+  
+  h2 {
+    font-size: 1.5em;
+  }
+}
+
+/* 暗色模式适配 */
+@media (prefers-color-scheme: dark) {
+  h1, h2, h3, h4, h5, h6,
+  .post-title,
+  .navbar .menu-list a,
+  footer,
+  .post-meta {
+    color: #87CEEB !important; /* 暗色模式下使用更亮的淡蓝色 */
+  }
+  
+  .navbar .menu-list a:hover,
+  footer a:hover {
+    color: #B0E2FF !important; /* 暗色模式悬停色 */
+  }
+}
+
+/* 确保某些特定元素使用英文字体 */
+pre, code, kbd, samp,
+.highlight, .highlight pre,
+[class*="language-"] pre,
+[class*="language-"] code,
+.CodeMirror,
+.terminal,
+.cm-s-material {
+  font-family: var(--english-font) !important;
+  font-feature-settings: "calt" 1;
+  text-rendering: optimizeLegibility;
+}
+
+/* 特殊处理：如果某个元素需要混合字体 */
+.mixed-font {
+  font-family: var(--english-font), var(--chinese-font);
+}
+
+/* 防止字体闪烁优化 */
+.font-loaded body {
+  font-family: var(--chinese-font);
+}
+
+.font-loading body {
+  font-family: sans-serif;
+}

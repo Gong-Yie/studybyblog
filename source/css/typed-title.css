@@ -1,0 +1,15 @@
+/* 去掉了容易导致闪烁的 visibility 隐藏，直接靠 js 瞬间接管 */
+
+/* 光标样式定制 */
+.typed-cursor {
+  display: inline-block;
+  font-weight: 300;     /* 让光标显得稍微细长优雅一些 */
+  color: inherit;
+  margin-left: 4px;     /* 和文字保持一点呼吸感 */
+  vertical-align: middle;
+  animation: blink 0.8s infinite step-start; /* step-start 让闪烁更像真实的命令行 */
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}

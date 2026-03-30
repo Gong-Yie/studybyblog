@@ -1,0 +1,182 @@
+# 主页副标题设置
+subtitle:
+  enable: false        # 1. 开启副标题功能
+  effect: true        # 2. 开启打字特效（关键！）
+  loop: true          # 3. (可选) 是否循环打字，true为循环播放
+  source: false       # 4. (可选) 是否调用第三方服务，false则使用下方自定义的sub列表
+  # 5. 在这里自定义你要展示的句子列表
+  sub:
+    - 这是第一句话
+    - 这是会循环出现的第二句话
+    - 还可以有第三句
+
+# 2. 侧边栏和顶栏的个人信息
+avatar:
+  img: /img/avatar.jpg
+  effect: false # 鼠标移上去头像会旋转
+
+favicon: /img/favicon.ico
+
+# --------------------------------------
+# Image Settings
+# --------------------------------------
+# The banner image of index page
+index_img: transparent
+# The background image of footer
+footer_img: transparent
+# Website Background
+# Can set it to color or image url
+background: /img/banner.png
+# --------------------------------------
+# Index page settings
+# --------------------------------------
+# The height of top_img, eg: 300px/300em/300rem
+index_top_img_height: 400px
+# --------------------------------------
+# Beautify / Effect
+# --------------------------------------
+# Add a mask to the header and footer
+mask:
+  header: false
+
+# 4. 博客名字和作者
+author: 工一阵
+menu:
+  首页: / || fas fa-home
+  归档: /archives/ || fas fa-archive
+  标签: /tags/ || fas fa-tags        # 必须对应 source/tags/
+  分类: /categories/ || fas fa-folder-open # 必须对应 source/categories/
+  友情链接: /link/ || fas fa-link        # 对应 source/link/
+  关于我: /about/ || fas fa-heart        # 对应 source/about/
+
+aside:
+  enable: true # 是否启用侧边栏
+  hide: false # 在宽屏幕下隐藏侧边栏
+  button: true # 显示侧边栏切换按钮
+  mobile: true # 在移动设备上显示侧边栏
+  position: right # 侧边栏位置 left / right
+  card_author:
+    enable: true # 显示作者信息卡片
+    description: 工一阵的博客
+    button:
+      enable: true # 显示作者信息卡片按钮
+      icon: fab fa-github
+      text: 关注我
+      link: https://github.com/Gong-Yie
+  card_announcement:
+    enable: true # 显示公告
+    content: 欢迎来到我的博客！
+
+beautify: # 美化设置
+  enable: true
+  field: site # site/post
+  title-prefix-icon: '\f0c1'
+  title-prefix-icon-color: '#F47466'
+
+# wordcount (字數統計)
+wordcount:
+  enable: true
+  post_wordcount: true
+  min2read: true
+  total_wordcount: true
+
+search:
+  # 选择：algolia_search / local_search / docsearch
+  # 如果不需要搜索功能，保持为空
+  use: local_search
+  placeholder:
+  
+  # Algolia 搜索
+  algolia_search:
+    # 每页搜索结果数量
+    hitsPerPage: 6
+
+  # 本地搜索
+  local_search:
+    # 页面加载时预加载搜索数据
+    preload: true
+    # 每篇文章显示的顶部 n 个搜索结果，设置为-1 显示所有结果
+    top_n_per_article: -1
+    # 将 HTML 字符串反转义为可读内容
+    unescape: false
+    # 启用搜索结果分页
+    pagination:
+      enable: true
+      # 每页搜索结果数
+      hitsPerPage: 8
+    CDN:
+
+
+text_align_justify: true # 文章内容两端对齐
+
+copy: # 文章复制设置
+  enable: true
+  copyright:
+    enable: false
+    limit_count: 150
+
+activate_power_mode: #打字特效
+  enable: true
+  colorful: true # open particle animation (冒光特效)
+  shake: false #  open shake (抖动特效)
+  mobile: false
+
+pjax:
+  enable: true # 启用 Pjax（确保切换页面不中断播放）
+  exclude:
+    - /music/ # 排除音乐页面，保持完整加载以确保播放器正常工作
+
+inject: #自定义头部信息
+  head:
+    - <link rel="stylesheet" href="/css/custom.css">
+    - <link rel="stylesheet" href="/css/modify.css">
+    - <link rel="stylesheet" href="/css/mouse-effect.css">
+    - <link rel="stylesheet" href="/css/APlayer.min.css">
+    - <link rel="stylesheet" href="/css/global-player.css">
+    - <link rel="stylesheet" href="/css/typed-title.css">
+  bottom:
+    - <script src="/js/mouse-effect.js"></script>
+    - <script src="/js/APlayer.min.js"></script>
+    - <script src="/js/global-player.js"></script>
+    - <script src="/js/add-music-icon.js"></script>
+    - <script src="/js/typed-title.js"></script>
+    - <script src="/js/switch-bg.js"></script>
+    - <script src="/js/random-bg.js"></script>
+
+# 评论系统
+comments:
+  # 选择评论系统，设为 'giscus' 即可启用
+  use: giscus
+  # 懒加载：评论系统将在评论元素进入浏览器视口时加载
+  # 如果设置为 true，评论计数将无效
+  lazyload: false
+  # 在文章顶部图片中显示评论计数
+  count: false
+  # 在主页显示评论计数
+  card_post_count: false
+  
+giscus:
+  # 对应 data-repo
+  repo: Gong-Yie/Giscus
+  # 对应 data-repo-id
+  repo_id: R_kgDORQLVpg
+  # 对应 data-category
+  category: Announcements
+  # 对应 data-category-id
+  category_id: DIC_kwDORQLVps4C2awj
+  # 对应 data-mapping
+  mapping: pathname
+  # 对应 data-strict，注意 Butterfly 里可能写为 0 或 1，保持原样
+  strict: 0
+  # 对应 data-reactions-enabled
+  reactions_enabled: 1
+  # 对应 data-emit-metadata
+  emit_metadata: 0
+  # 对应 data-input-position
+  input_position: bottom
+  # 对应 data-theme
+  theme: preferred_color_scheme
+  # 对应 data-lang
+  lang: zh-CN
+  # 对应 crossorigin，一般填 anonymous 即可
+  crossorigin: anonymous

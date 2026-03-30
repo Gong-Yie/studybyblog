@@ -1,0 +1,32 @@
+- class_name: CTFer
+  link_list:
+    - name: 工一阵
+      link: https://www.gongyizhen.site/
+      avatar: https://www.gongyizhen.site/img/avatar.jpg
+      descr: 老己
+    - name: Autyui
+      link: https://autyui.github.io/
+      avatar: https://autyui.github.io/img/theYellow.jpg
+      descr: 队友，非常牛逼的pwn手
+    - name: joke
+      link: https://joke-new.zeabur.app/
+      avatar: https://joke-new.zeabur.app/img/9.jpg
+      descr: 我要成为喜提爱抚糕手
+    - name: F145H
+      link: https://github.com/F145H-F145H/Blog/tree/main
+      avatar: https://raw.githubusercontent.com/Gong-Yie/Picture/refs/heads/main/F145H.jpg
+      descr: 我崇拜的学长，是喜提爱抚糕手
+    - name: jayq1
+      link: https://blog.csdn.net/jayq1?type=lately
+      avatar: https://raw.githubusercontent.com/Gong-Yie/Picture/refs/heads/main/jayq1.jpg
+      descr: 也是我崇拜的学长，非常厉害的喜提爱抚糕手
+    - name: Florance
+      link: https://florance.top/
+      avatar: https://florance.top/images/avatar.jpg
+      descr: 超级无敌前端大手子
+- class_name: 开发者
+  link_list:
+    - name: Florance
+      link: https://florance.top/
+      avatar: https://florance.top/images/avatar.jpg
+      descr: 超级无敌前端大手子
