@@ -1,0 +1,1009 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>操作系统第1章：操作系统引论 | 工一阵·半盏</title><meta name="author" content="Gong-Yie"><meta name="copyright" content="Gong-Yie"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="操作系统引论 本章主线：先回答 操作系统是什么，再看它为什么出现、怎样发展，最后总结它的 基本特征、主要功能和结构设计。   本章内容1.1 操作系统概述1.2 操作系统的发展过程1.3 操作系统的基本特征1.4 操作系统的主要功能1.5 操作系统的结构设计1.6 研究操作系统的几种观点（PDF目录列出，正文未展开）1.7 流行的操作系统（PDF目录列出，正文未展开）  1.1 操作系统概述1.1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统第1章：操作系统引论">
+<meta property="og:url" content="https://gong-yie.github.io/posts/fec34378/index.html">
+<meta property="og:site_name" content="工一阵·半盏">
+<meta property="og:description" content="操作系统引论 本章主线：先回答 操作系统是什么，再看它为什么出现、怎样发展，最后总结它的 基本特征、主要功能和结构设计。   本章内容1.1 操作系统概述1.2 操作系统的发展过程1.3 操作系统的基本特征1.4 操作系统的主要功能1.5 操作系统的结构设计1.6 研究操作系统的几种观点（PDF目录列出，正文未展开）1.7 流行的操作系统（PDF目录列出，正文未展开）  1.1 操作系统概述1.1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gong-yie.github.io/img/avatar.jpg">
+<meta property="article:published_time" content="2026-07-02T12:01:00.000Z">
+<meta property="article:modified_time" content="2026-07-02T12:07:37.016Z">
+<meta property="article:author" content="Gong-Yie">
+<meta property="article:tag" content="操作系统">
+<meta property="article:tag" content="课程笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gong-yie.github.io/img/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "操作系统第1章：操作系统引论",
+  "url": "https://gong-yie.github.io/posts/fec34378/",
+  "image": "https://gong-yie.github.io/img/avatar.jpg",
+  "datePublished": "2026-07-02T12:01:00.000Z",
+  "dateModified": "2026-07-02T12:07:37.016Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Gong-Yie",
+      "url": "https://Gong-Yie.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://gong-yie.github.io/posts/fec34378/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":-1,"unescape":false,"pagination":{"enable":true,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '操作系统第1章：操作系统引论',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/modify.css"><link rel="stylesheet" href="/css/mouse-effect.css"><link rel="stylesheet" href="/css/APlayer.min.css"><link rel="stylesheet" href="/css/global-player.css"><link rel="stylesheet" href="/css/typed-title.css"><meta name="generator" content="Hexo 8.1.1"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/img/banner.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">工一阵·半盏</span></a><a class="nav-page-title" href="/"><span class="site-name">操作系统第1章：操作系统引论</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">操作系统第1章：操作系统引论</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-07-02T12:01:00.000Z" title="发表于 2026-07-02 20:01:00">2026-07-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-02T12:07:37.016Z" title="更新于 2026-07-02 20:07:37">2026-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>21分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="操作系统引论"><a href="#操作系统引论" class="headerlink" title="操作系统引论"></a>操作系统引论</h2><div style="border-left:4px solid #2f6fed;background:#f6f9ff;padding:10px 14px;margin:12px 0;">
+本章主线：先回答 <b>操作系统是什么</b>，再看它为什么出现、怎样发展，最后总结它的 <b>基本特征、主要功能和结构设计</b>。
+</div>
+
+<h3 id="本章内容"><a href="#本章内容" class="headerlink" title="本章内容"></a>本章内容</h3><p>1.1 操作系统概述<br>1.2 操作系统的发展过程<br>1.3 操作系统的基本特征<br>1.4 操作系统的主要功能<br>1.5 操作系统的结构设计<br>1.6 研究操作系统的几种观点（PDF目录列出，正文未展开）<br>1.7 流行的操作系统（PDF目录列出，正文未展开）</p>
+<hr>
+<h3 id="1-1-操作系统概述"><a href="#1-1-操作系统概述" class="headerlink" title="1.1 操作系统概述"></a>1.1 操作系统概述</h3><h4 id="1-1-1-操作系统的定义和地位"><a href="#1-1-1-操作系统的定义和地位" class="headerlink" title="1.1.1 操作系统的定义和地位"></a>1.1.1 操作系统的定义和地位</h4><p>操作系统的定义：一组<span style="color:#d93025;font-weight:700;">控制和管理计算机硬件和软件资源</span>、合理地对各类作业进行调度以及方便用户的程序的集合。</p>
+<h5 id="计算机系统组成"><a href="#计算机系统组成" class="headerlink" title="计算机系统组成"></a>计算机系统组成</h5><p>硬件系统（裸机）（标红）：CPU、存储器（主存、辅存）、I&#x2F;O、I&#x2F;O控制系统。<br>软件系统（标红）：系统软件、应用软件。<br>系统软件：管理计算机本身的操作。如：操作系统、编译系统。<br>应用软件：提供给用户进行解题。如：科学计算、事务管理。</p>
+<div style="background:#fff8e6;border:1px solid #f2d28b;padding:10px 14px;margin:12px 0;">
+<b>一句话记忆：</b>硬件是“能做事的机器”，软件是“告诉机器怎样做事的程序”，操作系统站在两者中间，负责管资源、管任务、给用户接口。
+</div>
+
+<h4 id="1-1-2-操作系统的目标"><a href="#1-1-2-操作系统的目标" class="headerlink" title="1.1.2 操作系统的目标"></a>1.1.2 操作系统的目标</h4><p>执行用户程序并使用户问题更易解决。<br><span style="color:#d93025;font-weight:700;">有效性</span>：以一种有效的方式使用系统资源。<br><span style="color:#d93025;font-weight:700;">方便性</span>：使计算机系统更易于使用。<br><span style="color:#d93025;font-weight:700;">可扩充性</span>：采用新的OS结构，易于功能的增、删、改。<br><span style="color:#d93025;font-weight:700;">开放性</span>：要求提供统一开放的环境，各种类型的计算机硬件系统，出自不同的厂家，能通过网络集成，并能够正确、有效地协同工作，实现应用程序的移植。</p>
+<h4 id="1-1-3-操作系统的作用"><a href="#1-1-3-操作系统的作用" class="headerlink" title="1.1.3 操作系统的作用"></a>1.1.3 操作系统的作用</h4><h5 id="作为用户与计算机硬件系统之间的接口"><a href="#作为用户与计算机硬件系统之间的接口" class="headerlink" title="作为用户与计算机硬件系统之间的接口"></a>作为用户与计算机硬件系统之间的接口</h5><p>用户<br>↓<br>应用程序及实用程序<br>↓<br>操作系统（系统调用、命令、图形窗口）<br>↓<br>计算机硬件</p>
+<p>接口方式主要有三种：</p>
+<table>
+<thead>
+<tr>
+<th>接口方式</th>
+<th>典型形式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>命令方式</td>
+<td>UNIX、DOS命令</td>
+<td>用户输入命令，系统解释执行</td>
+</tr>
+<tr>
+<td>系统调用方式</td>
+<td>API</td>
+<td>程序通过系统调用请求OS服务</td>
+</tr>
+<tr>
+<td>图形窗口方式</td>
+<td>Windows、GUI</td>
+<td>用户通过窗口、菜单、图标交互</td>
+</tr>
+</tbody></table>
+<h5 id="作为计算机系统资源的管理者"><a href="#作为计算机系统资源的管理者" class="headerlink" title="作为计算机系统资源的管理者"></a>作为计算机系统资源的管理者</h5><p>硬件资源：<br>处理机：处理机管理用于分配和控制处理机。<br>存储器：存储器管理主要负责内存的分配和回收。<br>I&#x2F;O设备：设备管理负责I&#x2F;O设备的分配（回收）与操纵。<br>信息资源（软件资源）：<br>程序和数据：文件管理用于实现对文件的存取、共享和保护。</p>
+<h5 id="实现了对计算机资源的抽象"><a href="#实现了对计算机资源的抽象" class="headerlink" title="实现了对计算机资源的抽象"></a>实现了对计算机资源的抽象</h5><p>当计算机（裸机）上覆盖了操作系统后，便为用户提供了一台功能显著增强、使用更加方便、效率明显提高的<span style="color:#2f6fed;font-weight:700;">虚拟计算机</span>。</p>
+<figure style="margin:16px 0;text-align:center;">
+  <img src="/postdata/os-chapter-01/os-abstraction.png" alt="操作系统实现对计算机资源的抽象" style="max-width:760px;width:100%;border:1px solid #ddd;border-radius:6px;">
+  <figcaption style="font-size:13px;color:#666;margin-top:6px;">图：操作系统通过I/O软件和操作命令屏蔽物理接口细节。</figcaption>
+</figure>
+
+<hr>
+<h3 id="1-2-操作系统的发展过程"><a href="#1-2-操作系统的发展过程" class="headerlink" title="1.2 操作系统的发展过程"></a>1.2 操作系统的发展过程</h3><h4 id="1-2-1-推动操作系统发展的主要动力"><a href="#1-2-1-推动操作系统发展的主要动力" class="headerlink" title="1.2.1 推动操作系统发展的主要动力"></a>1.2.1 推动操作系统发展的主要动力</h4><p><span style="color:#d93025;font-weight:700;">不断改善计算机效率</span>。<br>方便用户，用户不断提出越来越多新的苛刻要求。<br>硬件不断更新换代，数量不断增加，成本不断下降。<br>计算机体系结构的不断发展，计算机功能和复杂性不断增加。<br>不断提出新的应用需求。</p>
+<h4 id="1-2-2-操作系统的发展路线"><a href="#1-2-2-操作系统的发展路线" class="headerlink" title="1.2.2 操作系统的发展路线"></a>1.2.2 操作系统的发展路线</h4><p>无操作系统的计算机系统  </p>
+<blockquote>
+<p>人工操作方式 &gt; 脱机I&#x2F;O方式<br>–&gt; 单道批处理系统 –&gt; 多道批处理系统 –&gt; 分时系统 –&gt; 实时系统 –&gt; 微机操作系统 –&gt; 嵌入式操作系统 –&gt; 网络操作系统 –&gt; 分布式操作系统</p>
+</blockquote>
+<figure style="margin:16px 0;text-align:center;">
+  <img src="/postdata/os-chapter-01/os-history.png" alt="操作系统的发展过程" style="max-width:760px;width:100%;border:1px solid #ddd;border-radius:6px;">
+  <figcaption style="font-size:13px;color:#666;margin-top:6px;">图：操作系统从无操作系统阶段逐步发展到分布式操作系统。</figcaption>
+</figure>
+
+<h4 id="1-2-3-无操作系统的计算机系统"><a href="#1-2-3-无操作系统的计算机系统" class="headerlink" title="1.2.3 无操作系统的计算机系统"></a>1.2.3 无操作系统的计算机系统</h4><h5 id="人工操作方式"><a href="#人工操作方式" class="headerlink" title="人工操作方式"></a>人工操作方式</h5><p>第一代计算机：集中计算、计算机稀少。  </p>
+<p>第一代计算机特点：<br>电子管、体积大、成本高、可靠性差；主存：磁鼓、磁芯；无外存；输入设备落后；每秒几千次到几万次；机器语言和汇编语言；主要用于科学计算；代表如ENIAC。</p>
+<p>计算机提供了一些标准命令供用户使用，系统不是自我运行，而是等待操作员输入命令再运行。操作员键入什么命令，计算机就执行什么，否则就处于等待状态。<br>这种原始的操作系统相当于<span style="color:#d93025;font-weight:700;">一组命令集合</span>。</p>
+<p>人工操作方式的特点：</p>
+<ul>
+<li>单一操作员、单一操作终端</li>
+<li>单任务</li>
+<li>独占全机</li>
+<li>CPU等待人工操作</li>
+<li>串行，One By One</li>
+</ul>
+<p>缺点：</p>
+<ol>
+<li>用户独占全机（资源浪费）</li>
+<li>CPU等待人工操作</li>
+</ol>
+<p>矛盾：</p>
+<ul>
+<li>人机矛盾：机器等人</li>
+<li>CPU与I&#x2F;O速度不匹配的矛盾：CPU等I&#x2F;O设备</li>
+</ul>
+<p>解决方法：</p>
+<ul>
+<li>通道技术、缓冲技术</li>
+<li>监督程序</li>
+<li>脱机输入输出方式</li>
+</ul>
+<h5 id="脱机输入输出方式"><a href="#脱机输入输出方式" class="headerlink" title="脱机输入输出方式"></a>脱机输入输出方式</h5><p>引入I&#x2F;O机的概念，解决前者的缺点。</p>
+<p>为解决低速I&#x2F;O设备与CPU速度不匹配的矛盾，可将卡片或纸带上的用户程序和数据，通过一台外围小型计算机预先输入到磁带上。当CPU需要这些程序和数据时，再直接从磁带上高速读入到内存。当程序运行完毕或告一段落，CPU需要输出时，无须直接把计算结果送至低速输出设备，而是高速地把结果送到磁带上，然后在另一台外围机的控制下，把磁带上的计算结果由相应的输出设备输出。<br>优点是<span style="color:#d93025;font-weight:700;">减少CPU的空闲时间</span>且<span style="color:#d93025;font-weight:700;">提高I&#x2F;O速度</span>。</p>
+<h4 id="1-2-4-单道批处理系统"><a href="#1-2-4-单道批处理系统" class="headerlink" title="1.2.4 单道批处理系统"></a>1.2.4 单道批处理系统</h4><p>第二代通用计算机的特点：</p>
+<ul>
+<li>晶体管；每秒几十万次</li>
+<li>体积小、成本低、功耗降低、可靠性高、功能增强</li>
+<li>较易使用，设计者和操作者开始区分</li>
+<li>主存：磁芯体；外存：磁带和磁盘，出现文件</li>
+<li>FORTRAN和COBOL高级语言</li>
+<li>批处理系统</li>
+<li>科学计算和工商管理</li>
+<li>代表：IBM 1401和IBM 7094</li>
+</ul>
+<p>批处理（Batch）的基本思想：<br>操作员将一批作业以脱机方式输入到磁带上，然后在<span style="color:#d93025;font-weight:700;">监督程序</span>的控制下，使这些作业一个接一个地处理。</p>
+<p>监督程序（Monitor）：<br>用户的控制命令和操作步骤事先写在源程序前或专门的控制卡片上，监督程序先读入控制命令，并按控制命令的指示一步一步自动执行。</p>
+<p>批处理系统典型实例：</p>
+<ul>
+<li>IBM开发的FORTRAN监督系统FMS，用于IBM 709</li>
+<li>IBM开发的基于磁带的工作监督系统IBSYS，用于IBM 7090和7094</li>
+<li>密歇根大学开发的UMES，用于IBM 7094</li>
+</ul>
+<p>单道批处理系统的特征：</p>
+<ul>
+<li>自动性</li>
+<li>顺序性</li>
+<li>单道性</li>
+</ul>
+<p>单道批处理的优点：</p>
+<ul>
+<li>减少人工操作时间，解决人机矛盾</li>
+<li>提高资源利用率和系统效率</li>
+</ul>
+<p>批处理操作系统相当于：<span style="color:#2f6fed;font-weight:700;">监督程序 + 标准命令集合</span>。</p>
+<p>单道批处理系统的缺点：</p>
+<ul>
+<li>资源利用率低下</li>
+<li>程序难以调试、除错</li>
+<li>内存中只有一个作业运行，CPU仍然可能等待I&#x2F;O操作完成</li>
+</ul>
+<div style="background:#fff8e6;border:1px solid #f2d28b;padding:10px 14px;margin:12px 0;">
+<b>理解点：</b>单道批处理解决了“机器等人”的问题，但没有彻底解决“CPU等I/O”的问题。
+</div>
+
+<h4 id="1-2-5-多道批处理系统"><a href="#1-2-5-多道批处理系统" class="headerlink" title="1.2.5 多道批处理系统"></a>1.2.5 多道批处理系统</h4><p>第三代计算机特点：</p>
+<ul>
+<li>半导体集成电路：运算器、控制器、主存</li>
+<li>外存：磁盘</li>
+<li>每秒百万次</li>
+<li>软件：结构化编程、C和Pascal语言、关系数据库</li>
+<li>多道批处理系统、分时系统</li>
+<li>科学计算、大规模商务处理</li>
+<li>系列化、通用化和标准化的设计思想</li>
+<li>大型机仍为主流，如IBM 360；小型机如PDP、VAX</li>
+</ul>
+<p>多道程序设计技术：</p>
+<ul>
+<li><span style="color:#d93025;font-weight:700;">多道</span>：内存中同时驻留多个作业</li>
+<li>宏观上同时运行：都处于运行状态，但都未运行完毕</li>
+<li>微观上交替运行：各作业交替使用CPU</li>
+</ul>
+<figure style="margin:16px 0;text-align:center;">
+  <img src="/postdata/os-chapter-01/multiprogramming-timeline.png" alt="多道程序运行情况" style="max-width:760px;width:100%;border:1px solid #ddd;border-radius:6px;">
+  <figcaption style="font-size:13px;color:#666;margin-top:6px;">图：多个程序交替获得CPU，I/O等待时CPU可转去执行其他程序。</figcaption>
+</figure>
+
+<p>引入多道程序设计技术的优点：</p>
+<ul>
+<li>提高CPU利用率</li>
+<li>提高内存和I&#x2F;O设备利用率</li>
+<li>提高系统吞吐量</li>
+</ul>
+<p>多道批处理系统：<br>操作员将多个用户提交的一批作业加载到计算机的外存（磁盘）上并排成一个队列（后备队列）；然后，由操作系统按一定算法从后备队列中选择若干个作业调入内存运行。当所有作业运行完毕，操作员将运行结果交给每位用户。<br>典型的多道批处理操作系统是IBM的OS&#x2F;360。</p>
+<p>多道批处理系统的特征：</p>
+<ul>
+<li>多道性</li>
+<li>无序性</li>
+<li>调度性：作业调度、进程调度</li>
+</ul>
+<p>多道批处理系统的优点：</p>
+<ul>
+<li>资源利用率高</li>
+<li>系统吞吐量大</li>
+</ul>
+<p>多道批处理系统的缺点：</p>
+<ul>
+<li>平均周转时间长</li>
+<li>交互性差，用户无法管理自己的程序</li>
+<li>开发、调试、修改程序比较困难</li>
+</ul>
+<p>多道批处理系统带来的新问题：</p>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处理机争用问题</td>
+<td>多个作业都希望获得CPU</td>
+</tr>
+<tr>
+<td>内存分配和保护问题</td>
+<td>多个作业同时在内存中，需要分配空间并防止互相破坏</td>
+</tr>
+<tr>
+<td>I&#x2F;O设备分配问题</td>
+<td>多个作业竞争有限的外设</td>
+</tr>
+<tr>
+<td>文件组织和管理问题</td>
+<td>程序和数据需要被可靠保存、访问、共享</td>
+</tr>
+<tr>
+<td>作业管理问题</td>
+<td>作业进入、调度、完成都需要系统管理</td>
+</tr>
+<tr>
+<td>用户与系统的接口问题</td>
+<td>用户需要更方便地使用系统</td>
+</tr>
+</tbody></table>
+<p>操作系统的形成：<br>为解决上述问题，在计算机系统中增设一组软件，对这些问题加以有效、妥善地解决。这组软件包括：控制和管理四大资源的软件、合理地对各类作业进行调度的软件，以及方便用户使用计算机的软件，这样就形成了操作系统。</p>
+<h4 id="1-2-6-分时系统"><a href="#1-2-6-分时系统" class="headerlink" title="1.2.6 分时系统"></a>1.2.6 分时系统</h4><p>分时系统的产生：用户需求–人机交互、共享主机、方便上机。</p>
+<p>用户需要表现在以下几个方面：</p>
+<ul>
+<li>人机交互：批处理系统做不到</li>
+<li>共享主机：多个用户感觉自己像独占主机</li>
+</ul>
+<p>定义：<br>分时系统是在一台主机上连接多个带有显示器和键盘的终端，同时允许多个用户共享主机中的资源；每个用户都可通过自己的终端以交互方式使用计算机。</p>
+<p>分时系统的思想：</p>
+<ul>
+<li>采用<span style="color:#d93025;font-weight:700;">时间片轮转</span>，同时为许多终端用户服务</li>
+<li>对每个用户保证足够快的响应时间，并提供交互会话功能</li>
+<li>时间片：将CPU的时间划分成若干个片段，操作系统以时间片为单位轮流为每个终端用户服务</li>
+<li>设计目标：对用户请求及时响应，并在可能条件下尽量提高系统资源利用率</li>
+<li>适合办公自动化、教学及事务处理等要求人机会话的场合</li>
+</ul>
+<p>分时系统实现中的关键问题：</p>
+<ul>
+<li>及时接收：多终端卡、多路输入缓冲区</li>
+<li>及时处理：交互作业应在内存；提高对换速度（快速外存）；限制用户数目；缩短时间片；减少对换信息量</li>
+</ul>
+<p>分时系统特点：</p>
+<table>
+<thead>
+<tr>
+<th>特点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>多路性</td>
+<td>允许多台终端同时连接到一台主机，并分时使用</td>
+</tr>
+<tr>
+<td>独立性</td>
+<td>感觉用户独占主机</td>
+</tr>
+<tr>
+<td>及时性</td>
+<td>用户请求能在很短时间内获得响应（1~3秒）</td>
+</tr>
+<tr>
+<td>交互性</td>
+<td>用户可通过终端与系统进行广泛的人机对话</td>
+</tr>
+</tbody></table>
+<figure style="margin:16px 0;text-align:center;">
+  <img src="/postdata/os-chapter-01/timesharing-features.png" alt="分时系统特点" style="max-width:760px;width:100%;border:1px solid #ddd;border-radius:6px;">
+  <figcaption style="font-size:13px;color:#666;margin-top:6px;">图：分时系统的多路性、独立性、及时性和交互性。</figcaption>
+</figure>
+
+<h4 id="1-2-7-实时系统"><a href="#1-2-7-实时系统" class="headerlink" title="1.2.7 实时系统"></a>1.2.7 实时系统</h4><p>第四代计算机特点：</p>
+<ul>
+<li>大规模集成电路</li>
+<li>半导体存储器作主存，大容量硬盘、软盘与光盘</li>
+<li>体积小、功能强、价格便宜</li>
+<li>微处理器</li>
+<li>个人计算机开始普及，诞生了DOS、GUI</li>
+<li>计算机系统向大型、微型、嵌入式等多个方向发展</li>
+<li>分布式系统、网络、多处理器、集群系统、嵌入式系统</li>
+<li>实时操作系统、网络操作系统</li>
+<li>计算机广泛应用到社会各领域，进入日常工作和生活</li>
+</ul>
+<p>实时系统的引入：</p>
+<ul>
+<li>实时控制：工业生产过程控制、智能设备控制、军事武器实时控制、飞机控制</li>
+<li>实时信息处理：银行、订票系统、情报检索系统</li>
+</ul>
+<p>实时系统的含义：<br>所有任务都在规定时间内完成的操作系统，即满足<span style="color:#d93025;font-weight:700;">时序可预测性</span>。</p>
+<p>实时系统的类型：</p>
+<p>按任务执行是否呈现周期性划分：</p>
+<ul>
+<li>周期性任务：联系周期</li>
+<li>非周期性任务：联系开始截止时间或完成截止时间</li>
+</ul>
+<p>根据对截止时间（Deadline）的要求划分：</p>
+<ul>
+<li>硬实时任务：截止时间要求严格</li>
+<li>软实时任务：截止时间要求不严格</li>
+</ul>
+<p>实时系统主要的设计目标：</p>
+<ul>
+<li>对外部请求在严格时间范围内作出反应</li>
+<li>高可靠性</li>
+<li>安全性</li>
+<li>完整性</li>
+</ul>
+<p>实时系统与分时系统比较：</p>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>分时系统</th>
+<th>实时系统</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>多路性</td>
+<td>相同</td>
+<td>相同</td>
+</tr>
+<tr>
+<td>独立性</td>
+<td>相同</td>
+<td>相同</td>
+</tr>
+<tr>
+<td>及时性</td>
+<td>要求较高</td>
+<td>要求更高</td>
+</tr>
+<tr>
+<td>交互性</td>
+<td>更强</td>
+<td>相对较弱</td>
+</tr>
+<tr>
+<td>可靠性</td>
+<td>一般要求</td>
+<td>要求更高</td>
+</tr>
+</tbody></table>
+<h4 id="1-2-8-嵌入式操作系统"><a href="#1-2-8-嵌入式操作系统" class="headerlink" title="1.2.8 嵌入式操作系统"></a>1.2.8 嵌入式操作系统</h4><p>嵌入式系统：为了完成某个特定功能而设计的系统，或是有附加机制的系统，或是其他部分的计算机硬件与软件的结合体。</p>
+<p>嵌入式OS：用于嵌入式系统的OS。<br>例子：µC&#x2F;OS-II、嵌入式Linux、Windows Embedded、VxWorks、Android、iOS等。</p>
+<p>嵌入式操作系统特点：</p>
+<ul>
+<li>系统内核小</li>
+<li>系统精简</li>
+<li>具有可配置性</li>
+<li>高实时性</li>
+</ul>
+<h4 id="1-2-9-网络操作系统"><a href="#1-2-9-网络操作系统" class="headerlink" title="1.2.9 网络操作系统"></a>1.2.9 网络操作系统</h4><p>网络OS的概念：<br>在计算机网络环境下对网络资源进行管理和控制，实现数据通信及对网络资源的共享，为用户提供与网络资源接口的一组软件和规程的集合。</p>
+<p>网络OS的功能：</p>
+<ul>
+<li>数据通信</li>
+<li>应用互操作</li>
+<li>网络管理</li>
+</ul>
+<p>例子：UNIX、Linux、Windows NT&#x2F;2000&#x2F;Server。</p>
+<h4 id="1-2-10-分布式操作系统"><a href="#1-2-10-分布式操作系统" class="headerlink" title="1.2.10 分布式操作系统"></a>1.2.10 分布式操作系统</h4><p>分布式系统：基于软件实现的一种多处理机系统，是多个处理机通过通信线路互连而构成的松耦合系统。<br>分布式系统特征：分布性、透明性、同一性、全局性。</p>
+<p>分布式OS：配置在分布式系统上的公用OS。<br>例子：万维网、鸿蒙OS。</p>
+<p>分布式OS的功能：</p>
+<ul>
+<li>单处理机OS的主要功能</li>
+<li>网络OS所拥有的全部功能</li>
+<li>通信管理功能</li>
+<li>资源管理功能</li>
+<li>进程管理功能</li>
+</ul>
+<hr>
+<h3 id="1-3-操作系统的基本特征"><a href="#1-3-操作系统的基本特征" class="headerlink" title="1.3 操作系统的基本特征"></a>1.3 操作系统的基本特征</h3><h4 id="1-3-1-并发"><a href="#1-3-1-并发" class="headerlink" title="1.3.1 并发"></a>1.3.1 并发</h4><p>并行：两个或多个事件在<span style="color:#d93025;font-weight:700;">同一时刻</span>发生。<br>并发：两个或多个事件在<span style="color:#d93025;font-weight:700;">同一时间间隔内</span>发生。</p>
+<p>在多道程序环境下，并发性是指宏观上在一段时间内有多道程序在同时运行；在单处理机系统中，微观上这些程序在交替执行。</p>
+<p>程序的并发执行，有效地改善了系统资源的利用率并提高了系统吞吐量，但它使系统复杂化。操作系统必须具有控制和管理各种并发活动的能力。</p>
+<p>并发中的基本概念：</p>
+<ul>
+<li>进程：能独立运行并作为资源分配的基本单位</li>
+<li>线程：独立运行和独立调度的基本单位，可提高并行度</li>
+</ul>
+<p>并发性带来的问题：</p>
+<ol>
+<li>如何从一个程序切换到另一个程序？</li>
+<li>怎样将各个程序活动隔离开来，使之互不干扰、免遭破坏？</li>
+<li>怎样让多个程序协作完成任务？</li>
+<li>怎样协调多个程序对资源的竞争？</li>
+<li>如何保证每个程序的资源不被其他进程侵犯？</li>
+<li>多个程序共享文件数据时，如何保证数据一致性？</li>
+</ol>
+<div style="border-left:4px solid #d93025;background:#fff7f6;padding:10px 14px;margin:12px 0;">
+<b>重点：</b>并发是操作系统最重要的特征，其他特征均以并发为前提。
+</div>
+
+<h4 id="1-3-2-共享"><a href="#1-3-2-共享" class="headerlink" title="1.3.2 共享"></a>1.3.2 共享</h4><p>共享：系统中资源可供内存中多个并发执行的进程共同使用。</p>
+<p>共享方式：</p>
+<ul>
+<li>互斥共享：一段时间只允许一个进程访问该资源，这类资源称为临界资源</li>
+<li>同时访问：宏观上同时访问，微观上仍然互斥交替访问</li>
+</ul>
+<p>与共享性有关的问题：资源分配、信息保护、存取控制等，必须妥善解决。</p>
+<h4 id="1-3-3-并发与共享的关系"><a href="#1-3-3-并发与共享的关系" class="headerlink" title="1.3.3 并发与共享的关系"></a>1.3.3 并发与共享的关系</h4><p>并发和共享是操作系统两个最基本的特征，这两者之间又是互为存在条件的。</p>
+<ul>
+<li>资源共享以程序并发为条件；若系统不允许程序并发执行，自然不存在资源共享问题</li>
+<li>若系统不能对资源共享实施有效管理，也会影响程序并发执行，甚至根本无法并发执行</li>
+</ul>
+<h4 id="1-3-4-虚拟"><a href="#1-3-4-虚拟" class="headerlink" title="1.3.4 虚拟"></a>1.3.4 虚拟</h4><p>虚拟：通过某种技术把一个物理实体变为若干个逻辑上的对应物。前者实际存在，后者是虚构假想的。</p>
+<p>虚拟是操作系统管理系统资源的重要手段，可提高资源利用率。</p>
+<p>常见技术：</p>
+<ul>
+<li>时分复用技术：虚拟处理机、虚拟设备</li>
+<li>空分复用技术：虚拟磁盘、虚拟存储器</li>
+</ul>
+<h4 id="1-3-5-异步"><a href="#1-3-5-异步" class="headerlink" title="1.3.5 异步"></a>1.3.5 异步</h4><p>在多道程序环境下，允许多个进程并发执行，但由于竞争资源等因素限制，使进程的执行不是“一气呵成”，而是以“走走停停”的方式运行。</p>
+<p>多道程序环境下程序的执行以异步方式进行：每个程序在何时执行、多个程序间的执行顺序以及完成每道程序所需时间都是不可预知的。进程以人们不可预知的速度向前推进，此即进程的异步性。</p>
+<p>异步性的表现：</p>
+<ul>
+<li>一个进程在CPU上运行一段时间后，可能由于等待资源满足或事件发生而暂停执行，CPU转给另一个进程</li>
+<li>各种硬件和软件中断事件发生的时刻是随机的</li>
+<li>用户发出命令的时刻是随机的</li>
+<li>程序运行发生错误或异常的时刻是随机的</li>
+</ul>
+<hr>
+<h3 id="1-4-操作系统的主要功能"><a href="#1-4-操作系统的主要功能" class="headerlink" title="1.4 操作系统的主要功能"></a>1.4 操作系统的主要功能</h3><figure style="margin:16px 0;text-align:center;">
+  <img src="/postdata/os-chapter-01/os-functions.png" alt="操作系统的主要功能" style="max-width:760px;width:100%;border:1px solid #ddd;border-radius:6px;">
+  <figcaption style="font-size:13px;color:#666;margin-top:6px;">图：操作系统的主要功能围绕资源管理、用户接口和现代OS新功能展开。</figcaption>
+</figure>
+
+<p>操作系统的主要功能：</p>
+<ul>
+<li>处理机管理功能</li>
+<li>内存管理功能</li>
+<li>设备管理功能</li>
+<li>文件管理功能</li>
+<li>操作系统与用户之间的接口</li>
+<li>现代OS的新功能</li>
+</ul>
+<h4 id="1-4-1-处理机管理"><a href="#1-4-1-处理机管理" class="headerlink" title="1.4.1 处理机管理"></a>1.4.1 处理机管理</h4><p>处理机管理的主要任务：</p>
+<ul>
+<li>对处理机进行分配</li>
+<li>对处理机运行进行有效控制和管理</li>
+</ul>
+<p>注：处理机的分配和运行以进程为基本单位，因此对处理机的管理可归结为对进程的管理。</p>
+<p>处理机管理的主要功能：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>进程控制</td>
+<td>创建进程、撤消（终止）进程、状态转换</td>
+</tr>
+<tr>
+<td>进程同步</td>
+<td>信号量机制</td>
+</tr>
+<tr>
+<td>进程通信</td>
+<td>直接通信、间接通信</td>
+</tr>
+<tr>
+<td>调度</td>
+<td>作业调度、进程调度</td>
+</tr>
+</tbody></table>
+<p>进程调度：</p>
+<ul>
+<li>作业调度：为作业分配必要资源，调入内存建立进程，并使之进入就绪队列</li>
+<li>进程调度：从就绪队列中选出进程，分配CPU，使之运行</li>
+<li>调度算法：FCFS、优先权等</li>
+</ul>
+<h4 id="1-4-2-存储器管理"><a href="#1-4-2-存储器管理" class="headerlink" title="1.4.2 存储器管理"></a>1.4.2 存储器管理</h4><p>主要任务：</p>
+<ul>
+<li>为多道程序的运行提供良好的环境</li>
+<li>方便用户使用存储器</li>
+<li>提高存储器的利用率</li>
+<li>从逻辑上扩充内存</li>
+</ul>
+<figure style="margin:16px 0;text-align:center;">
+  <img src="/postdata/os-chapter-01/memory-management.png" alt="存储器管理" style="max-width:760px;width:100%;border:1px solid #ddd;border-radius:6px;">
+  <figcaption style="font-size:13px;color:#666;margin-top:6px;">图：存储器管理包括分配回收、保护、地址映射和内存扩充。</figcaption>
+</figure>
+
+<p>存储器管理功能：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>内存分配和回收</td>
+<td>内存分配、内存回收</td>
+</tr>
+<tr>
+<td>内存保护</td>
+<td>确保每个用户程序仅在自己的内存空间运行；绝不允许用户程序访问操作系统的程序和数据</td>
+</tr>
+<tr>
+<td>地址映射</td>
+<td>将逻辑地址转换为物理地址</td>
+</tr>
+<tr>
+<td>内存扩充</td>
+<td>虚拟存储技术，包括请求调入功能、置换功能</td>
+</tr>
+</tbody></table>
+<h4 id="1-4-3-设备管理"><a href="#1-4-3-设备管理" class="headerlink" title="1.4.3 设备管理"></a>1.4.3 设备管理</h4><p>主要任务：</p>
+<ul>
+<li>完成用户提出的I&#x2F;O请求</li>
+<li>为用户分配I&#x2F;O设备</li>
+<li>提高I&#x2F;O设备的利用率及速度</li>
+<li>方便用户使用I&#x2F;O设备</li>
+</ul>
+<p>功能：</p>
+<ul>
+<li>缓冲管理</li>
+<li>设备分配</li>
+<li>设备处理</li>
+<li>虚拟设备</li>
+</ul>
+<h4 id="1-4-4-文件管理"><a href="#1-4-4-文件管理" class="headerlink" title="1.4.4 文件管理"></a>1.4.4 文件管理</h4><p>主要任务：</p>
+<ul>
+<li>对用户文件和系统文件进行管理</li>
+<li>方便用户使用文件</li>
+<li>保证文件的安全性</li>
+</ul>
+<p>功能：</p>
+<ul>
+<li>文件存储空间的管理</li>
+<li>目录管理</li>
+<li>文件的读、写管理和保护</li>
+</ul>
+<h4 id="1-4-5-用户接口"><a href="#1-4-5-用户接口" class="headerlink" title="1.4.5 用户接口"></a>1.4.5 用户接口</h4><figure style="margin:16px 0;text-align:center;">
+  <img src="/postdata/os-chapter-01/user-interface.png" alt="用户接口和程序接口" style="max-width:760px;width:100%;border:1px solid #ddd;border-radius:6px;">
+  <figcaption style="font-size:13px;color:#666;margin-top:6px;">图：用户接口包括CLI、作业说明书、GUI；程序接口主要是系统调用。</figcaption>
+</figure>
+
+<p>用户接口：</p>
+<ul>
+<li>联机用户接口：命令行方式CLI</li>
+<li>脱机用户接口：批处理系统中的作业说明书，即作业控制语言JCL</li>
+<li>图形用户接口：GUI</li>
+</ul>
+<p>程序接口：</p>
+<ul>
+<li>系统调用：能够完成特定功能的子程序</li>
+</ul>
+<h4 id="1-4-6-现代OS的新功能"><a href="#1-4-6-现代OS的新功能" class="headerlink" title="1.4.6 现代OS的新功能"></a>1.4.6 现代OS的新功能</h4><p>系统安全：</p>
+<ul>
+<li>认证技术</li>
+<li>密码技术</li>
+<li>访问控制技术</li>
+<li>反病毒技术</li>
+</ul>
+<p>网络功能和服务：</p>
+<ul>
+<li>网络通信</li>
+<li>资源管理</li>
+<li>应用互操作</li>
+</ul>
+<p>支持多媒体：</p>
+<ul>
+<li>接纳控制技术</li>
+<li>实时调度</li>
+<li>多媒体文件的存储</li>
+</ul>
+<hr>
+<h3 id="1-5-操作系统的结构设计"><a href="#1-5-操作系统的结构设计" class="headerlink" title="1.5 操作系统的结构设计"></a>1.5 操作系统的结构设计</h3><h4 id="1-5-1-操作系统设计需要考虑的方面"><a href="#1-5-1-操作系统设计需要考虑的方面" class="headerlink" title="1.5.1 操作系统设计需要考虑的方面"></a>1.5.1 操作系统设计需要考虑的方面</h4><p>操作系统设计需要考虑：</p>
+<ul>
+<li>实现操作系统的基本管理功能和用户接口</li>
+<li>性能</li>
+<li>保护和安全</li>
+<li>可靠性：正确性、稳定性</li>
+<li>可维护性：改错性维护、完善性维护</li>
+<li>商业化因素：Unix、Windows</li>
+<li>标准和开放系统：应用集成、可移植、互操作性</li>
+<li>可理解性</li>
+</ul>
+<p>操作系统设计呈现出的特征：</p>
+<ul>
+<li>复杂程度高</li>
+<li>生成周期长</li>
+<li>正确性难保证</li>
+</ul>
+<p>例子：CTSS、OS&#x2F;360、Multics、Windows 2000。</p>
+<h4 id="1-5-2-常见结构"><a href="#1-5-2-常见结构" class="headerlink" title="1.5.2 常见结构"></a>1.5.2 常见结构</h4><p>操作系统的结构设计包括：</p>
+<ul>
+<li>无结构</li>
+<li>模块式</li>
+<li>层次式</li>
+<li>微内核</li>
+</ul>
+<h4 id="1-5-3-无结构操作系统"><a href="#1-5-3-无结构操作系统" class="headerlink" title="1.5.3 无结构操作系统"></a>1.5.3 无结构操作系统</h4><p>早期开发操作系统时，设计者只是把注意力放在功能实现和获得高效率上，缺乏首尾一致的设计思想。这种OS是无结构的。</p>
+<p>主要特点：</p>
+<ul>
+<li>编制紧凑程序，便于利用内存</li>
+<li>对goto无限制</li>
+<li>缺乏清晰的程序结构</li>
+<li>难以维护和理解</li>
+</ul>
+<p>缺点：<span style="color:#d93025;font-weight:700;">逻辑复杂，维护困难</span>。</p>
+<h4 id="1-5-4-模块化操作系统"><a href="#1-5-4-模块化操作系统" class="headerlink" title="1.5.4 模块化操作系统"></a>1.5.4 模块化操作系统</h4><p>模块化操作系统通过分解来控制大型软件复杂度。<br>如：进程模块、内存模块等，各模块内进一步划分子模块。</p>
+<p>优点：</p>
+<ul>
+<li>提高OS设计的可维护性</li>
+<li>增强OS的可适应性</li>
+<li>加速OS的开发过程：可以并行开发模块</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>接口不易确定</li>
+<li>模块依赖关系可能复杂，尤其对于大型软件而言</li>
+</ul>
+<h4 id="1-5-5-层次式操作系统"><a href="#1-5-5-层次式操作系统" class="headerlink" title="1.5.5 层次式操作系统"></a>1.5.5 层次式操作系统</h4><p>层次式结构的思想：</p>
+<ul>
+<li>可简化设计复杂度</li>
+<li>下层为上层提供服务</li>
+<li>公用模块放低层</li>
+<li>低层（0层）为硬件</li>
+<li>高层为用户接口，最高层（N层）为用户层</li>
+<li>随层次增高，相应软件运行速度下降</li>
+</ul>
+<p>典型层次：</p>
+<ol>
+<li>硬件层：直接与计算机硬件交互，管理硬件资源</li>
+<li>核心层（微内核）：提供基本内核功能，如进程管理、内存管理、低级别I&#x2F;O操作等</li>
+<li>设备驱动层：包含各种设备驱动程序，提供对外设的接口</li>
+<li>系统调用接口层：提供系统调用接口，供用户程序使用</li>
+<li>服务层：提供操作系统的高级服务，如文件系统、网络协议栈等</li>
+<li>应用层：运行用户应用程序，并向用户提供最终服务</li>
+</ol>
+<p>主要缺点：<span style="color:#d93025;font-weight:700;">系统效率降低</span>。<br>原因：层次结构是分层单向依赖的，必须在每层之间都建立层次间通信机制。OS每执行一个功能，通常要自上而下穿越多个层次，这会增加系统通信开销。</p>
+<h4 id="1-5-6-微内核操作系统"><a href="#1-5-6-微内核操作系统" class="headerlink" title="1.5.6 微内核操作系统"></a>1.5.6 微内核操作系统</h4><figure style="margin:16px 0;text-align:center;">
+  <img src="/postdata/os-chapter-01/microkernel-overview.png" alt="微内核OS结构概念" style="max-width:760px;width:100%;border:1px solid #ddd;border-radius:6px;">
+  <figcaption style="font-size:13px;color:#666;margin-top:6px;">图：微内核结构强调小内核、客户/服务器模式、机制与策略分离。</figcaption>
+</figure>
+
+<p>基本概念：</p>
+<ul>
+<li>足够小的内核</li>
+<li>基于客户&#x2F;服务器模式</li>
+<li>应用“机制与策略分离”原理</li>
+<li>采用面向对象技术</li>
+</ul>
+<p>机制与策略分离：</p>
+<ul>
+<li>机制：需要提供什么功能</li>
+<li>策略：如何使用这些功能</li>
+</ul>
+<p>基本功能：</p>
+<ul>
+<li>进程管理</li>
+<li>低级存储器管理</li>
+<li>中断和陷入处理</li>
+</ul>
+<p>实例：Mach OS、Windows 2000&#x2F;XP。</p>
+<figure style="margin:16px 0;text-align:center;">
+  <img src="/postdata/os-chapter-01/microkernel-structure.png" alt="微内核OS结构示意" style="max-width:760px;width:100%;border:1px solid #ddd;border-radius:6px;">
+  <figcaption style="font-size:13px;color:#666;margin-top:6px;">图：微内核只保留最基本功能，把文件系统、设备管理等移到内核外。</figcaption>
+</figure>
+
+<p>微内核OS结构：<br>微内核是指把OS结构中的内存管理、设备管理、文件系统等功能尽可能从内核中分离出来，变成几个独立的非内核模块；而在内核中只保留少量最基本的功能，如进程管理、低级存储器管理、中断和陷入处理，使内核变得简洁可靠。微内核并非一个完整的OS，而只是OS中最基本的部分。</p>
+<p>微内核系统优点：</p>
+<ul>
+<li>提高系统的可扩展性</li>
+<li>增强系统的可靠性</li>
+<li>可移植性强</li>
+<li>提供对分布式系统的支持</li>
+<li>融入面向对象技术</li>
+</ul>
+<p>微内核系统存在的问题：</p>
+<ul>
+<li>运行效率有所降低</li>
+<li>主要原因：完成一次客户对操作系统提出的服务请求时，需要利用消息实现多次交互，并进行用户&#x2F;内核模型与上下文的多次切换</li>
+</ul>
+<hr>
+<h3 id="1-6-研究操作系统的几种观点"><a href="#1-6-研究操作系统的几种观点" class="headerlink" title="1.6 研究操作系统的几种观点"></a>1.6 研究操作系统的几种观点</h3><div style="background:#f7f7f7;border:1px solid #ddd;padding:10px 14px;margin:12px 0;">
+PDF目录中列出本节，但当前 <code>OS/Os_第1章.pdf</code> 的正文页未展开该节内容。复习时可先从三条线索理解：资源管理观点、用户接口观点、程序执行环境观点。
+</div>
+
+<h3 id="1-7-流行的操作系统"><a href="#1-7-流行的操作系统" class="headerlink" title="1.7 流行的操作系统"></a>1.7 流行的操作系统</h3><div style="background:#f7f7f7;border:1px solid #ddd;padding:10px 14px;margin:12px 0;">
+PDF目录中列出本节，但当前 <code>OS/Os_第1章.pdf</code> 的正文页未展开该节内容。可结合课程后续内容补充 Unix、Linux、Windows、Android、iOS、鸿蒙等系统。
+</div>
+
+<hr>
+<h3 id="本章速记"><a href="#本章速记" class="headerlink" title="本章速记"></a>本章速记</h3><table>
+<thead>
+<tr>
+<th>关键词</th>
+<th>速记</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>操作系统定义</td>
+<td>管硬件和软件资源、调度作业、方便用户</td>
+</tr>
+<tr>
+<td>三个作用</td>
+<td>接口、资源管理者、资源抽象</td>
+</tr>
+<tr>
+<td>发展主线</td>
+<td>人工操作 –&gt; 脱机I&#x2F;O –&gt; 单道批处理 –&gt; 多道批处理 –&gt; 分时 –&gt; 实时 –&gt; 嵌入式&#x2F;网络&#x2F;分布式</td>
+</tr>
+<tr>
+<td>四大特征</td>
+<td>并发、共享、虚拟、异步</td>
+</tr>
+<tr>
+<td>并发与共享</td>
+<td>最基本特征，互为存在条件</td>
+</tr>
+<tr>
+<td>五类传统管理</td>
+<td>处理机、存储器、设备、文件、用户接口</td>
+</tr>
+<tr>
+<td>结构设计</td>
+<td>无结构、模块式、层次式、微内核</td>
+</tr>
+<tr>
+<td>微内核核心</td>
+<td>小内核、客户&#x2F;服务器、机制与策略分离</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://Gong-Yie.github.io">Gong-Yie</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://gong-yie.github.io/posts/fec34378/">https://gong-yie.github.io/posts/fec34378/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://Gong-Yie.github.io" target="_blank">工一阵·半盏</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="post-meta__tags" href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">课程笔记</a></div><div class="post-share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/b1953b8c/" title="操作系统第2章：进程管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">操作系统第2章：进程管理</div></div><div class="info-2"><div class="info-item-1">进程管理 本章主线：先理解 程序为什么不够用，再引入进程、PCB、进程状态和进程控制，最后处理并发带来的 同步、互斥、通信和线程 问题。   本章内容2.1 进程描述2.2 进程状态与进程控制块2.3 进程控制2.4 进程同步2.5 经典进程的同步问题2.6 进程通信2.7 线程及其实现  2.1 进程描述前趋图前趋图是一个有向无循环图，用于描述程序各部分之间的执行先后关系。结点表示语句、程序段或进程；有向边表示前趋关系。       图：前趋图用于描述程序段之间的依赖关系。    程序的顺序执行通常一个程序可分成若干个程序段，它们必须按照某种先后次序执行。仅当前一个操作执行完毕，后一个操作才能开始。 顺序执行的特征：  顺序性：各程序段严格按照先后次序执行 封闭性：程序独占全机资源，执行结果不受外界影响 可再现性：只要初始条件相同，多次执行结果相同  程序的并发执行程序的并发执行：一组在逻辑上互相独立的程序或程序段，在执行过程中，其执行时间在客观上互相重叠。 并发执行的特征：  间断性&#x2F;异步性：程序“走走停停”，失去原来的严格时序关系 失去封闭性：多个程序共享系统资源...</div></div></div></a><a class="pagination-related" href="/posts/57acf897/" title="算法设计与分析实验十五"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">算法设计与分析实验十五</div></div><div class="info-2"><div class="info-item-1">OJ作业实验十五问题 Y: n皇后问题（分支限界法） - 问题 - AHNU-DS时间限制 : 1.000 sec  内存限制 : 128 MB 题目描述（本题必须使用分支限界法，使用其它方法不计成绩）在 n×n格的棋盘上放置彼此不受攻击的 n（3&lt;n&lt;11）个皇后。按照国际象棋的规则，皇后可以攻击与之处在同一行或同一列或同一斜线上的棋子。 n后问题等价于在 n×n格的棋盘上放置n个皇后，任何 2个皇后不放在同一行或同一列或同一斜线上。使用FIFO-分支限界法求解 n 皇后问题，输出在 n×n个方格上放置彼此不受攻击的n个皇后的一个放置方案。 输入一个正整数n。 输出第一个n个皇后的放置方案（行和列号都从1开始，每个数字后带有一个空格）。 样例输入14  样例输出12 4 1 3  我的代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/b1953b8c/" title="操作系统第2章：进程管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-02</div><div class="info-item-2">操作系统第2章：进程管理</div></div><div class="info-2"><div class="info-item-1">进程管理 本章主线：先理解 程序为什么不够用，再引入进程、PCB、进程状态和进程控制，最后处理并发带来的 同步、互斥、通信和线程 问题。   本章内容2.1 进程描述2.2 进程状态与进程控制块2.3 进程控制2.4 进程同步2.5 经典进程的同步问题2.6 进程通信2.7 线程及其实现  2.1 进程描述前趋图前趋图是一个有向无循环图，用于描述程序各部分之间的执行先后关系。结点表示语句、程序段或进程；有向边表示前趋关系。       图：前趋图用于描述程序段之间的依赖关系。    程序的顺序执行通常一个程序可分成若干个程序段，它们必须按照某种先后次序执行。仅当前一个操作执行完毕，后一个操作才能开始。 顺序执行的特征：  顺序性：各程序段严格按照先后次序执行 封闭性：程序独占全机资源，执行结果不受外界影响 可再现性：只要初始条件相同，多次执行结果相同  程序的并发执行程序的并发执行：一组在逻辑上互相独立的程序或程序段，在执行过程中，其执行时间在客观上互相重叠。 并发执行的特征：  间断性&#x2F;异步性：程序“走走停停”，失去原来的严格时序关系 失去封闭性：多个程序共享系统资源...</div></div></div></a><a class="pagination-related" href="/posts/fd973253/" title="操作系统第4章：存储器管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-02</div><div class="info-item-2">操作系统第4章：存储器管理</div></div><div class="info-2"><div class="info-item-1">存储器管理 本章主线：存储器管理要解决 程序怎样装入内存、内存怎样分配、逻辑地址怎样变成物理地址。本章从基本概念出发，依次学习连续分配、分页、分段和段页式管理。   本章内容4.1 存储器管理基本概念4.2 程序装入和链接4.3 连续分配存储管理方式4.4 基本分页存储管理方式4.5 基本分段存储管理方式4.6 段页式存储管理方式  4.1 存储器管理基本概念存储器管理目标 为多道程序的并发运行提供良好环境 方便用户使用存储器 提高存储器利用率 从逻辑上扩充内存  主要功能：  内存分配和回收 内存保护 地址映射 内存扩充  存储器层次结构现代计算机系统中，存储器是信息处理的来源与归宿。典型层次从快到慢、从小到大依次为：寄存器、高速缓存、主存、磁盘缓存、辅存。       图：存储器层次结构体现速度、容量和成本之间的折中。    可执行存储器：寄存器和主存储器通常被称为可执行存储器，处理机可直接访问。辅存：容量大、速度慢，不能被CPU直接执行。 地址空间与存储空间地址空间：程序中逻辑地址的集合。存储空间：内存中物理地址的集合。 地址映射：将程序地址空间中的逻辑地址转换为存储空间中...</div></div></div></a><a class="pagination-related" href="/posts/e9e1ca84/" title="操作系统第3章：处理机调度与死锁"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-02</div><div class="info-item-2">操作系统第3章：处理机调度与死锁</div></div><div class="info-2"><div class="info-item-1">处理机调度与死锁 本章主线：处理机调度解决 谁先用CPU，死锁处理解决 进程为什么都走不动。前半章看调度层次、准则和算法，后半章看死锁的条件、预防、避免、检测和解除。   本章内容3.1 调度的层次3.2 调度队列模型和调度准则3.3 调度算法3.4 死锁的基本概念3.5 死锁的预防和避免3.6 死锁的检测和解除  3.1 调度的层次在多道程序环境下，进程数目往往多于处理机数目，它们竞争处理机。系统必须按某种算法，动态地把处理机分配给就绪队列中的某个进程，使之执行。 调度按层次划分：  高级调度：长程调度、作业调度、宏观调度 中级调度：中程调度、交换调度 低级调度：短程调度、CPU调度、进程调度、微观调度        图：作业从提交到完成通常经历高级、中级、低级调度。    高级调度高级调度用于决定把外存后备队列中的哪些作业调入内存，并为它们创建进程。 高级调度需要解决：  接纳多少作业进入内存 接纳哪些作业进入内存 使系统保持合适的多道程序度  低级调度低级调度的主要任务：从就绪队列中选择一个进程来执行，并分配处理机。它是操作系统中最基本、最频繁的调度。 进程调度功能：  保...</div></div></div></a><a class="pagination-related" href="/posts/a4607b83/" title="操作系统第7章：文件管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-02</div><div class="info-item-2">操作系统第7章：文件管理</div></div><div class="info-2"><div class="info-item-1">文件管理 本章主线：文件系统向用户提供 按名存取 的抽象。核心问题是文件如何组织、如何操作、目录如何管理，以及怎样快速、安全地找到文件。   本章内容7.1 文件和文件系统7.2 文件逻辑结构7.3 目录管理  7.1 文件和文件系统文件系统的功能从系统角度看：负责为用户建立、删除、读、写、修改和复制文件。从用户角度看：实现按名存取，让用户不必关心文件在磁盘上的具体位置。 文件系统需要解决：  文件如何命名 文件如何组织 文件如何存取 文件如何共享和保护 文件目录如何管理 文件存储空间如何分配  数据项、记录和文件数据项：最低级的数据组织形式。记录：一组相关数据项的集合。文件：在文件系统中最大的逻辑数据单位，是具有文件名的一组相关信息集合。       图：文件、记录和数据项之间具有层次关系。    文件类型按用途分类：  系统文件 用户文件 库文件  按组织形式和处理方式分类：  普通文件 目录文件 特殊文件  按保护级别分类：  只读文件 读写文件 执行文件  文件系统模型文件系统通常由三部分组成：  文件系统接口 对对象操纵和管理的软件集合 对象及其属性        图：...</div></div></div></a><a class="pagination-related" href="/posts/abfa2b3d/" title="操作系统第8章：磁盘存储器管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-02</div><div class="info-item-2">操作系统第8章：磁盘存储器管理</div></div><div class="info-2"><div class="info-item-1">磁盘存储器管理 本章主线：第7章讲“用户看到的文件”，本章讲 文件在磁盘上到底怎样放。核心是文件物理结构和空闲磁盘空间管理。   本章内容8.1 外存的组织方式8.2 文件存储空间的管理  8.1 外存的组织方式文件的物理结构直接与外存组织方式有关。不同的外存组织方式，会形成不同的文件物理结构。 常见文件物理结构：  连续分配 链接分配 索引分配 混合索引分配        图：外存组织方式决定文件在磁盘上的物理结构。    连续分配基本思想：为每个文件分配一组相邻的物理块。       图：连续分配要求文件占用一组相邻盘块。    优点：  顺序访问速度快 支持直接访问 地址计算简单 磁头移动少  缺点：  文件长度必须事先知道 文件增长困难 容易产生外部碎片 需要定期紧凑  适用场景：大小固定、顺序访问为主的文件，如CD-ROM中的视频文件。 链接分配基本思想：为文件分配若干不连续的盘块，各块之间通过指针连接。       图：链接分配用指针把不连续盘块串成文件。    隐式链接每个盘块中保存指向下一个盘块的指针，目录项中只保存首块和末块地址。 优点：  不需要连续空间 文件...</div></div></div></a><a class="pagination-related" href="/posts/e9de04d/" title="操作系统第6章：输入输出系统"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-02</div><div class="info-item-2">操作系统第6章：输入输出系统</div></div><div class="info-2"><div class="info-item-1">输入输出系统 本章主线：I/O系统负责把复杂、低速、种类繁多的设备组织成统一可用的服务。核心问题是 设备如何控制、I/O如何发起和完成、怎样提高I/O效率。   本章内容6.1 I&#x2F;O系统的功能、模型和接口6.2 I&#x2F;O设备和设备控制器6.3 中断机构和中断处理程序6.4 设备驱动程序6.5 与设备无关的I&#x2F;O软件6.6 用户层I&#x2F;O软件6.7 缓冲区管理6.8 磁盘性能和调度  6.1 I&#x2F;O系统的功能、模型和接口I&#x2F;O系统特点 I&#x2F;O设备种类多，速度差异大 设备控制方式多样 CPU速度远高于I&#x2F;O设备 I&#x2F;O操作常常需要中断、DMA、通道等机制配合  I&#x2F;O系统管理对象：  I&#x2F;O设备 设备控制器 I&#x2F;O通道 中断处理程序 设备驱动程序 缓冲区        图：现代计算机I/O系统由设备、控制器、通道和系统软件协作完成。    I&#x2F;O系统基本功能 隐藏物理设备细节 与设备无关 提高处理机和I&#x2F;O设备利用率 对I&#x2F;O设备进行控制...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Gong-Yie</div><div class="author-info-description">工一阵的博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Gong-Yie"><i class="fab fa-github"></i><span>关注我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%95%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">操作系统引论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E5%86%85%E5%AE%B9"><span class="toc-number">1.1.</span> <span class="toc-text">本章内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="toc-number">1.2.</span> <span class="toc-text">1.1 操作系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%9C%B0%E4%BD%8D"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.1.1 操作系统的定义和地位</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%88%90"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">计算机系统组成</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.1.2 操作系统的目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-3-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.1.3 操作系统的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%9C%E4%B8%BA%E7%94%A8%E6%88%B7%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">作为用户与计算机硬件系统之间的接口</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%9C%E4%B8%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E7%9A%84%E7%AE%A1%E7%90%86%E8%80%85"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">作为计算机系统资源的管理者</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E4%BA%86%E5%AF%B9%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%B5%84%E6%BA%90%E7%9A%84%E6%8A%BD%E8%B1%A1"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">实现了对计算机资源的抽象</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%91%E5%B1%95%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">1.2 操作系统的发展过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-%E6%8E%A8%E5%8A%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%8F%91%E5%B1%95%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%A8%E5%8A%9B"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.2.1 推动操作系统发展的主要动力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%91%E5%B1%95%E8%B7%AF%E7%BA%BF"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.2.2 操作系统的发展路线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-%E6%97%A0%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.3.</span> <span class="toc-text">1.2.3 无操作系统的计算机系统</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%BA%E5%B7%A5%E6%93%8D%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">人工操作方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%84%B1%E6%9C%BA%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%96%B9%E5%BC%8F"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">脱机输入输出方式</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-4-%E5%8D%95%E9%81%93%E6%89%B9%E5%A4%84%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.4.</span> <span class="toc-text">1.2.4 单道批处理系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-5-%E5%A4%9A%E9%81%93%E6%89%B9%E5%A4%84%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.5.</span> <span class="toc-text">1.2.5 多道批处理系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-6-%E5%88%86%E6%97%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.6.</span> <span class="toc-text">1.2.6 分时系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-7-%E5%AE%9E%E6%97%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.7.</span> <span class="toc-text">1.2.7 实时系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-8-%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.8.</span> <span class="toc-text">1.2.8 嵌入式操作系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-9-%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.9.</span> <span class="toc-text">1.2.9 网络操作系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-10-%E5%88%86%E5%B8%83%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.10.</span> <span class="toc-text">1.2.10 分布式操作系统</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E5%BE%81"><span class="toc-number">1.4.</span> <span class="toc-text">1.3 操作系统的基本特征</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-%E5%B9%B6%E5%8F%91"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.3.1 并发</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-%E5%85%B1%E4%BA%AB"><span class="toc-number">1.4.2.</span> <span class="toc-text">1.3.2 共享</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%85%B1%E4%BA%AB%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.4.3.</span> <span class="toc-text">1.3.3 并发与共享的关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-4-%E8%99%9A%E6%8B%9F"><span class="toc-number">1.4.4.</span> <span class="toc-text">1.3.4 虚拟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-5-%E5%BC%82%E6%AD%A5"><span class="toc-number">1.4.5.</span> <span class="toc-text">1.3.5 异步</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="toc-number">1.5.</span> <span class="toc-text">1.4 操作系统的主要功能</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-1-%E5%A4%84%E7%90%86%E6%9C%BA%E7%AE%A1%E7%90%86"><span class="toc-number">1.5.1.</span> <span class="toc-text">1.4.1 处理机管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-2-%E5%AD%98%E5%82%A8%E5%99%A8%E7%AE%A1%E7%90%86"><span class="toc-number">1.5.2.</span> <span class="toc-text">1.4.2 存储器管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-3-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86"><span class="toc-number">1.5.3.</span> <span class="toc-text">1.4.3 设备管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-4-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86"><span class="toc-number">1.5.4.</span> <span class="toc-text">1.4.4 文件管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-5-%E7%94%A8%E6%88%B7%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.5.5.</span> <span class="toc-text">1.4.5 用户接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-6-%E7%8E%B0%E4%BB%A3OS%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD"><span class="toc-number">1.5.6.</span> <span class="toc-text">1.4.6 现代OS的新功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.6.</span> <span class="toc-text">1.5 操作系统的结构设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E6%96%B9%E9%9D%A2"><span class="toc-number">1.6.1.</span> <span class="toc-text">1.5.1 操作系统设计需要考虑的方面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-2-%E5%B8%B8%E8%A7%81%E7%BB%93%E6%9E%84"><span class="toc-number">1.6.2.</span> <span class="toc-text">1.5.2 常见结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-3-%E6%97%A0%E7%BB%93%E6%9E%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.6.3.</span> <span class="toc-text">1.5.3 无结构操作系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-4-%E6%A8%A1%E5%9D%97%E5%8C%96%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.6.4.</span> <span class="toc-text">1.5.4 模块化操作系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-5-%E5%B1%82%E6%AC%A1%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.6.5.</span> <span class="toc-text">1.5.5 层次式操作系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-6-%E5%BE%AE%E5%86%85%E6%A0%B8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.6.6.</span> <span class="toc-text">1.5.6 微内核操作系统</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-%E7%A0%94%E7%A9%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%87%A0%E7%A7%8D%E8%A7%82%E7%82%B9"><span class="toc-number">1.7.</span> <span class="toc-text">1.6 研究操作系统的几种观点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-%E6%B5%81%E8%A1%8C%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.8.</span> <span class="toc-text">1.7 流行的操作系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E9%80%9F%E8%AE%B0"><span class="toc-number">1.9.</span> <span class="toc-text">本章速记</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/abfa2b3d/" title="操作系统第8章：磁盘存储器管理">操作系统第8章：磁盘存储器管理</a><time datetime="2026-07-02T12:08:00.000Z" title="发表于 2026-07-02 20:08:00">2026-07-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/a4607b83/" title="操作系统第7章：文件管理">操作系统第7章：文件管理</a><time datetime="2026-07-02T12:07:00.000Z" title="发表于 2026-07-02 20:07:00">2026-07-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/e9de04d/" title="操作系统第6章：输入输出系统">操作系统第6章：输入输出系统</a><time datetime="2026-07-02T12:06:00.000Z" title="发表于 2026-07-02 20:06:00">2026-07-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/d1ee99f6/" title="操作系统第5章：虚拟存储器">操作系统第5章：虚拟存储器</a><time datetime="2026-07-02T12:05:00.000Z" title="发表于 2026-07-02 20:05:00">2026-07-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/fd973253/" title="操作系统第4章：存储器管理">操作系统第4章：存储器管理</a><time datetime="2026-07-02T12:04:00.000Z" title="发表于 2026-07-02 20:04:00">2026-07-02</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Gong-Yie</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'Gong-Yie/Giscus',
+      'data-repo-id': 'R_kgDORQLVpg',
+      'data-category-id': 'DIC_kwDORQLVps4C2awj',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><script src="/js/mouse-effect.js"></script><script src="/js/APlayer.min.js"></script><script src="/js/global-player.js"></script><script src="/js/add-music-icon.js"></script><script src="/js/typed-title.js"></script><script src="/js/switch-bg.js"></script><script src="/js/random-bg.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js" defer="defer"></script><script>document.addEventListener('DOMContentLoaded', () => {
+  const pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:description\"]","link[rel=\"canonical\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/music/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => {
+      try {
+        fn()
+      } catch (err) {
+        console.debug('Pjax callback failed:', err)
+      }
+    })
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      false
+        ? pjax.loadUrl('/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.3"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
