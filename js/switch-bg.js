@@ -1,10 +1,10 @@
 (function() {
   // 1. 你的专属背景图库 (支持本地路径或图床链接)
   const backgrounds = [
-    '/img/banner.png',                // 默认背景（对应你 config 里的初始设置）
-    '/img/天依p1.jpg',   
-    '/img/天依p2.jpg',        
-    '/img/天依p3.jpg'
+    '/studybyblog/img/banner.png',                // 默认背景（对应你 config 里的初始设置）
+    '/studybyblog/img/天依p1.jpg',   
+    '/studybyblog/img/天依p2.jpg',        
+    '/studybyblog/img/天依p3.jpg'
   ];
 
   // 2. 初始化背景并附加平滑过渡动画

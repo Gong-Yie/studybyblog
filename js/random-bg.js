@@ -1,10 +1,10 @@
 (function() {
   // 你的专属图库（建议多放几张，刷新起来更有盲盒感）
   const backgrounds = [
-    '/img/banner.png',                // 默认背景（对应你 config 里的初始设置）
-    '/img/天依p1.jpg',   
-    '/img/天依p2.jpg',        
-    '/img/天依p3.jpg'
+    '/studybyblog/img/banner.png',                // 默认背景（对应你 config 里的初始设置）
+    '/studybyblog/img/天依p1.jpg',   
+    '/studybyblog/img/天依p2.jpg',        
+    '/studybyblog/img/天依p3.jpg'
   ];
 
   function changeBackground() {
